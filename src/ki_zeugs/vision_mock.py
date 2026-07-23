@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 import os
 from ultralytics import YOLO
 
@@ -9,17 +10,14 @@ MODEL_PATH = os.path.join(BASE_DIR, "yolov8n.pt")
 model = YOLO(MODEL_PATH)
 
 
-def check_raum_status():
+def check_raum_status(image_bytes):
 
-    bild_pfad = os.path.join(BASE_DIR, "room.jpg")
+    image_array = np.frombuffer(image_bytes, dtype=np.uint8)
+    img = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
 
-    print(f"\n[OKI] Analysiere Bild: {bild_pfad} ...")
-
-    if not os.path.exists(bild_pfad):
-        print(f"[OKI] FEHLER: Bild '{bild_pfad}' nicht gefunden!")
+    if img is None:
+        print("[OKI] FEHLER: Bild konnte nicht dekodiert werden!")
         return False
-
-    img = cv2.imread(bild_pfad)
 
     results = model(img, verbose=False)
 
@@ -43,8 +41,25 @@ def check_raum_status():
 
 if __name__ == "__main__":
 
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Teste die Bildanalyse mit einer Bilddatei oder dem Standardbild.")
+    parser.add_argument("image", nargs="?", help="Pfad zur Testbilddatei")
+    args = parser.parse_args()
+
+    if args.image:
+        with open(args.image, "rb") as f:
+            image_bytes = f.read()
+    else:
+        sample_path = os.path.join(BASE_DIR, "room.jpg")
+        if not os.path.exists(sample_path):
+            print("[OKI] FEHLER: Kein Testbild gefunden und kein Pfad angegeben.")
+            raise SystemExit(1)
+        with open(sample_path, "rb") as f:
+            image_bytes = f.read()
+
     print("Starte KI-Testlauf...")
 
-    result = check_raum_status()
+    result = check_raum_status(image_bytes)
 
     print("Raum besetzt:", result)
