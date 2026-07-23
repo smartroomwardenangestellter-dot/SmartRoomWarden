@@ -1,280 +1,306 @@
--- coding: utf-8 --
+# -*- coding: utf-8 -*-
 
-import osimport sysimport certifiimport base64
+import os
+import sys
+import certifi
+import base64
 
-from flask import Flask, request, Responsefrom email.mime.text import MIMETextfrom datetime import datetime, timezone
+from flask import Flask, request, Response
+from email.mime.text import MIMEText
+from datetime import datetime, timezone
 
-os.environ["SSL_CERT_FILE"] = certifi.where()os.environ["REQUESTS_CA_BUNDLE"] = certifi.where()
+os.environ["SSL_CERT_FILE"] = certifi.where()
+os.environ["REQUESTS_CA_BUNDLE"] = certifi.where()
 
-from google.auth.transport.requests import Requestfrom google.oauth2.credentials import Credentialsfrom google_auth_oauthlib.flow import InstalledAppFlowfrom googleapiclient.discovery import build
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
 
-vision_mock importieren
-
+# vision_mock importieren
 sys.path.append("/home/smartroomwarden/SRW/OKI_Darian")
 
 from vision_mock import check_raum_status
 
-SCOPES = ["https://www.googleapis.com/auth/calendar.readonly","https://www.googleapis.com/auth/gmail.send"]
+
+SCOPES = [
+    "https://www.googleapis.com/auth/calendar.readonly",
+    "https://www.googleapis.com/auth/gmail.send"
+]
 
 OWN_EMAIL = "removed-email@example.invalid"
 
 DEVICE_TOKEN = "***REMOVED-DEVICE-TOKEN***"
 
-def token_ok():# Wir holen uns den Token, den der ESP32 im Header versteckt haterhaltener_token = request.headers.get('X-Device-Token')
 
-# Wir prüfen, ob er exakt mit unserem Passwort übereinstimmt
-if erhaltener_token == "***REMOVED-DEVICE-TOKEN***":
-    return True
-else:
-    print("Sicherheitswarnung: Falscher oder fehlender Token!")
-    return False
+def token_ok():
+    # Wir holen uns den Token, den der ESP32 im Header versteckt hat
+    erhaltener_token = request.headers.get('X-Device-Token')
+    
+    # Wir prüfen, ob er exakt mit unserem Passwort übereinstimmt
+    if erhaltener_token == "***REMOVED-DEVICE-TOKEN***":
+        return True
+    else:
+        print("Sicherheitswarnung: Falscher oder fehlender Token!")
+        return False
 
-----------------------------------------
+# ----------------------------------------
 
-Bildspeicherort
-
+# Bildspeicherort
 VISION_BILD = "/home/smartroomwarden/SRW/OKI_Darian/room.jpg"
 
-app = Flask(name)
+app = Flask(__name__)
+
 
 def get_credentials():
 
-creds = None
+    creds = None
 
-if os.path.exists("token.json"):
+    if os.path.exists("token.json"):
 
-    creds = Credentials.from_authorized_user_file(
-        "token.json",
-        SCOPES
-    )
-
-if not creds or not creds.valid:
-
-    if creds and creds.expired and creds.refresh_token:
-
-        creds.refresh(Request())
-
-    else:
-
-        flow = InstalledAppFlow.from_client_secrets_file(
-            "credentials.json",
+        creds = Credentials.from_authorized_user_file(
+            "token.json",
             SCOPES
         )
 
-        creds = flow.run_local_server(port=0)
+    if not creds or not creds.valid:
 
-    with open("token.json", "w") as token:
-        token.write(creds.to_json())
+        if creds and creds.expired and creds.refresh_token:
 
-return creds
+            creds.refresh(Request())
+
+        else:
+
+            flow = InstalledAppFlow.from_client_secrets_file(
+                "credentials.json",
+                SCOPES
+            )
+
+            creds = flow.run_local_server(port=0)
+
+        with open("token.json", "w") as token:
+            token.write(creds.to_json())
+
+    return creds
+
 
 def get_services():
 
-creds = get_credentials()
+    creds = get_credentials()
 
-calendar_service = build(
-    "calendar",
-    "v3",
-    credentials=creds
-)
+    calendar_service = build(
+        "calendar",
+        "v3",
+        credentials=creds
+    )
 
-gmail_service = build(
-    "gmail",
-    "v1",
-    credentials=creds
-)
+    gmail_service = build(
+        "gmail",
+        "v1",
+        credentials=creds
+    )
 
-return calendar_service, gmail_service
+    return calendar_service, gmail_service
+
 
 def send_email(gmail_service, to_email, subject, body):
 
-message = MIMEText(body, "plain", "utf-8")
+    message = MIMEText(body, "plain", "utf-8")
 
-message["to"] = to_email
-message["subject"] = subject
+    message["to"] = to_email
+    message["subject"] = subject
 
-raw_message = base64.urlsafe_b64encode(
-    message.as_bytes()
-).decode()
+    raw_message = base64.urlsafe_b64encode(
+        message.as_bytes()
+    ).decode()
 
-gmail_service.users().messages().send(
-    userId="me",
-    body={"raw": raw_message}
-).execute()
+    gmail_service.users().messages().send(
+        userId="me",
+        body={"raw": raw_message}
+    ).execute()
+
 
 def token_ok():
 
-token = request.headers.get("X-Device-Token", "")
+    token = request.headers.get("X-Device-Token", "")
 
-return token == DEVICE_TOKEN
+    return token == DEVICE_TOKEN
+
 
 def get_current_event(calendar_service):
 
-now_utc = datetime.now(timezone.utc)
+    now_utc = datetime.now(timezone.utc)
 
-now_iso = now_utc.isoformat()
+    now_iso = now_utc.isoformat()
 
-events_result = (
-    calendar_service.events()
-    .list(
-        calendarId="primary",
-        timeMin=now_iso,
-        maxResults=10,
-        singleEvents=True,
-        orderBy="startTime",
-    )
-    .execute()
-)
-
-events = events_result.get("items", [])
-
-for event in events:
-
-    start = event["start"].get(
-        "dateTime",
-        event["start"].get("date")
+    events_result = (
+        calendar_service.events()
+        .list(
+            calendarId="primary",
+            timeMin=now_iso,
+            maxResults=10,
+            singleEvents=True,
+            orderBy="startTime",
+        )
+        .execute()
     )
 
-    end = event["end"].get(
-        "dateTime",
-        event["end"].get("date")
-    )
+    events = events_result.get("items", [])
 
-    start_dt = datetime.fromisoformat(
-        start.replace("Z", "+00:00")
-    )
+    for event in events:
 
-    end_dt = datetime.fromisoformat(
-        end.replace("Z", "+00:00")
-    )
+        start = event["start"].get(
+            "dateTime",
+            event["start"].get("date")
+        )
 
-    if start_dt <= datetime.now(timezone.utc) <= end_dt:
-        return event, start_dt
+        end = event["end"].get(
+            "dateTime",
+            event["end"].get("date")
+        )
 
-return None, None
+        start_dt = datetime.fromisoformat(
+            start.replace("Z", "+00:00")
+        )
 
-@app.route("/status", methods=["GET"])def status():
+        end_dt = datetime.fromisoformat(
+            end.replace("Z", "+00:00")
+        )
 
-if not token_ok():
-    return Response("unauthorized", status=401)
+        if start_dt <= datetime.now(timezone.utc) <= end_dt:
+            return event, start_dt
 
-calendar_service, _ = get_services()
+    return None, None
 
-event, start_dt = get_current_event(calendar_service)
 
-if event:
-    print("Termin aktiv")
-    return Response("true", mimetype="text/plain")
+@app.route("/status", methods=["GET"])
+def status():
 
-print("Kein Termin")
+    if not token_ok():
+        return Response("unauthorized", status=401)
 
-return Response("false", mimetype="text/plain")
-
-@app.route("/upload", methods=["POST"])def upload():
-
-if not token_ok():
-    return Response("unauthorized", status=401)
-
-try:
-
-    calendar_service, gmail_service = get_services()
+    calendar_service, _ = get_services()
 
     event, start_dt = get_current_event(calendar_service)
 
-    if not event:
-        return Response("Kein aktiver Termin", status=200)
+    if event:
+        print("Termin aktiv")
+        return Response("true", mimetype="text/plain")
 
-    image_bytes = request.get_data()
+    print("Kein Termin")
 
-    if not image_bytes:
-        return Response("Kein Bild", status=400)
+    return Response("false", mimetype="text/plain")
 
-    # Bild speichern
-    with open(VISION_BILD, "wb") as f:
-        f.write(image_bytes)
 
-    print("Bild gespeichert")
+@app.route("/upload", methods=["POST"])
+def upload():
 
-    # KI Analyse
-    raum_besetzt = check_raum_status()
+    if not token_ok():
+        return Response("unauthorized", status=401)
 
-    # Bild löschen
-    if os.path.exists(VISION_BILD):
-        os.remove(VISION_BILD)
+    try:
 
-    # Wenn Personen erkannt wurden -> keine Mail
-    if raum_besetzt:
+        calendar_service, gmail_service = get_services()
 
-        print("Raum besetzt")
+        event, start_dt = get_current_event(calendar_service)
 
-        return Response("Raum besetzt", status=200)
+        if not event:
+            return Response("Kein aktiver Termin", status=200)
 
-    # Prüfen, ob der Termin schon mindestens 10 Minuten läuft
-    termin_laeuft_seit = datetime.now(timezone.utc) - start_dt
+        image_bytes = request.get_data()
 
-    if termin_laeuft_seit.total_seconds() < 10 * 60:
+        if not image_bytes:
+            return Response("Kein Bild", status=400)
 
-        print("Raum leer, aber Termin läuft noch keine 10 Minuten")
+        # Bild speichern
+        with open(VISION_BILD, "wb") as f:
+            f.write(image_bytes)
 
-        return Response("Termin läuft noch keine 10 Minuten", status=200)
+        print("Bild gespeichert")
 
-    print("Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden")
+        # KI Analyse
+        raum_besetzt = check_raum_status()
 
-    title = event.get("summary", "(Kein Titel)")
+        # Bild löschen
+        if os.path.exists(VISION_BILD):
+            os.remove(VISION_BILD)
 
-    attendees = event.get("attendees", [])
+        # Wenn Personen erkannt wurden -> keine Mail
+        if raum_besetzt:
 
-    for attendee in attendees:
+            print("Raum besetzt")
 
-        email = attendee.get("email", "")
+            return Response("Raum besetzt", status=200)
 
-        if not email:
-            continue
+        # Prüfen, ob der Termin schon mindestens 10 Minuten läuft
+        termin_laeuft_seit = datetime.now(timezone.utc) - start_dt
 
-        if email.lower() == OWN_EMAIL.lower():
-            continue
+        if termin_laeuft_seit.total_seconds() < 10 * 60:
 
-        subject = f"Raumfreigabe prüfen: {title}"
+            print("Raum leer, aber Termin läuft noch keine 10 Minuten")
 
-        body = f"""
+            return Response("Termin läuft noch keine 10 Minuten", status=200)
 
+        print("Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden")
+
+        title = event.get("summary", "(Kein Titel)")
+
+        attendees = event.get("attendees", [])
+
+        for attendee in attendees:
+
+            email = attendee.get("email", "")
+
+            if not email:
+                continue
+
+            if email.lower() == OWN_EMAIL.lower():
+                continue
+
+            subject = f"Raumfreigabe prüfen: {title}"
+
+            body = f"""
 Hallo,
 
-du hast aktuell einen Raum für das Meeting {title} gebucht.In dem Raum befinden sich derzeit keine Personen.
+du hast aktuell einen Raum für das Meeting {title} gebucht.
+In dem Raum befinden sich derzeit keine Personen.
 
-Bitte denk dran Räume wieder frei zu geben, falls diese doch nicht benötigt werden,oder Termine verschoben werden, damit sie für andere Termine genutz werden können.
+Bitte denk dran Räume wieder frei zu geben, falls diese doch nicht benötigt werden, 
+oder Termine verschoben werden, damit sie für andere Termine genutz werden können.
 
 Vielen Dank!
 
-Smart Room Warden"""
+Smart Room Warden
+"""
 
-        try:
+            try:
 
-            send_email(
-                gmail_service,
-                email,
-                subject,
-                body
-            )
+                send_email(
+                    gmail_service,
+                    email,
+                    subject,
+                    body
+                )
 
-            print(f"Mail gesendet an {email}")
+                print(f"Mail gesendet an {email}")
 
-        except Exception as e:
+            except Exception as e:
 
-            print(e)
+                print(e)
 
-    return Response("Fertig", status=200)
+        return Response("Fertig", status=200)
 
-except Exception as e:
+    except Exception as e:
 
-    print(e)
+        print(e)
 
-    return Response("Server Fehler", status=500)
+        return Response("Server Fehler", status=500)
 
-if name == "main":
 
-app.run(
-    host="0.0.0.0",
-    port=5000,
-ssl_context='adhoc'
-)
+if __name__ == "__main__":
+
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+	ssl_context='adhoc'
+    )
