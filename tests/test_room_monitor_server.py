@@ -64,6 +64,15 @@ class RoomMonitorServerTests(unittest.TestCase):
         self.assertEqual(response.status_code, 503)
         self.assertEqual(response.data.decode(), "Dienst nicht verfügbar")
 
+    def test_status_returns_service_unavailable_when_event_lookup_fails(self):
+        self.module.get_services = Mock(return_value=(Mock(), Mock()))
+        self.module.get_current_event = Mock(side_effect=RuntimeError("boom"))
+
+        response = self.client.get("/status", headers=self.valid_headers)
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.data.decode(), "Dienst nicht verfügbar")
+
     def test_validate_configuration_reports_missing_credentials(self):
         self.module.GOOGLE_CREDENTIALS_PATH = Path("missing-creds.json")
         self.module.GOOGLE_TOKEN_PATH = Path("token.json")
@@ -117,6 +126,25 @@ class RoomMonitorServerTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode(), "Raum besetzt")
 
+    def test_upload_returns_server_error_when_event_has_no_start_time(self):
+        self.module.get_services = Mock(return_value=(Mock(), Mock()))
+        self.module.get_current_event = Mock(
+            return_value=(
+                {"summary": "Team Meeting"},
+                None,
+            )
+        )
+        self.module.check_raum_status = Mock(return_value=False)
+
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"fake-image-bytes",
+        )
+
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.data.decode(), "Server Fehler")
+
     def test_upload_returns_no_active_event(self):
         self.module.get_services = Mock(return_value=(Mock(), Mock()))
         self.module.get_current_event = Mock(return_value=(None, None))
@@ -129,6 +157,50 @@ class RoomMonitorServerTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode(), "Kein aktiver Termin")
+
+    def test_upload_returns_service_unavailable_when_google_service_init_fails(self):
+        self.module.get_services = Mock(side_effect=RuntimeError("boom"))
+
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"fake-image-bytes",
+        )
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.data.decode(), "Dienst nicht verfügbar")
+
+    def test_upload_skips_owner_email_when_sending_notifications(self):
+        self.module.get_services = Mock(return_value=(Mock(), Mock()))
+        self.module.get_current_event = Mock(
+            return_value=(
+                {
+                    "summary": "Team Meeting",
+                    "attendees": [
+                        {"email": self.module.OWN_EMAIL},
+                        {"email": "guest@example.com"},
+                    ],
+                },
+                datetime.now(timezone.utc) - timedelta(minutes=11),
+            )
+        )
+        self.module.check_raum_status = Mock(return_value=False)
+        self.module.send_email = Mock()
+
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"fake-image-bytes",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("Fertig", response.data.decode())
+        self.module.send_email.assert_called_once_with(
+            self.module.get_services.return_value[1],
+            "guest@example.com",
+            "Raumfreigabe prüfen: Team Meeting",
+            self.module.send_email.call_args.args[3],
+        )
 
     def test_upload_returns_bad_request_for_missing_image(self):
         self.module.get_services = Mock(return_value=(Mock(), Mock()))
