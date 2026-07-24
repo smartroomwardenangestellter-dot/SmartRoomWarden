@@ -9,7 +9,7 @@ from unittest.mock import Mock
 
 def load_room_monitor_module() -> Any:
     project_root = Path(__file__).resolve().parents[1]
-    module_path = project_root / "src" / "api&flask" / "room_monitor_server.py"
+    module_path = project_root / "src" / "api_flask" / "room_monitor_server.py"
     spec = importlib.util.spec_from_file_location("room_monitor_server", module_path)
     if spec is None or spec.loader is None:
         raise ImportError(f"Could not load module from {module_path}")

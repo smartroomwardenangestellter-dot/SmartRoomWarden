@@ -19,7 +19,7 @@
 
 ### Aufgaben
 1. Codebasis auditieren
-   - `src/api&flask/room_monitor_server.py` analysieren
+   - `src/api_flask/room_monitor_server.py` analysieren
    - `src/ki_zeugs/vision_mock.py` analysieren
    - vorhandene Pipeline, Konfiguration und Abhängigkeiten dokumentieren
 2. Projektstruktur festlegen
@@ -58,7 +58,7 @@
    - `vision_mock` / Bildanalyse so anpassen, dass sie `ndarray` akzeptiert
    - temporäre Speicherung von `room.jpg` entfernen
 3. Startup- und Fehlerprüfung
-   - zentralen Entry-Point in `src/api&flask` definieren
+   - zentralen Entry-Point in `src/api_flask` definieren
    - beim Start vorhandene Konfiguration prüfen
    - fehlende Ressourcen und falsche Pfade früh melden
 4. Tests und Validation

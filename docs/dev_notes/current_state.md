@@ -3,7 +3,7 @@
 ## Komponenten
 
 ### API-Server
-- `src/api&flask/room_monitor_server.py`
+- `src/api_flask/room_monitor_server.py`
 - Flask-Anwendung mit den Endpunkten `/status` und `/upload`
 - Prüft Google-Kalendertermine und versendet Gmail-Benachrichtigungen
 - Nutzt `request.get_data()` für Bilddaten

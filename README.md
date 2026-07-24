@@ -45,7 +45,7 @@ python -m unittest discover -s tests -p 'test_*.py'
 Für den echten System-Clone wird stattdessen das passende Laufzeitprofil verwendet:
 ```powershell
 $env:SMARTROOMWARDEN_RUNTIME_MODE = "system"
-python src/api&flask/room_monitor_server.py
+python src/api_flask/room_monitor_server.py
 ```
 
 ### 4. Abhängigkeiten installieren
@@ -60,11 +60,11 @@ python -m unittest discover -s tests -p 'test_*.py'
 
 ### 6. Server starten
 ```powershell
-python src/api&flask/room_monitor_server.py
+python src/api_flask/room_monitor_server.py
 ```
 
 ## Wichtige Projektstrukturen
-- `src/api&flask/room_monitor_server.py` – Haupt-API und Logik für Status/Upload
+- `src/api_flask/room_monitor_server.py` – Haupt-API und Logik für Status/Upload
 - `src/ki_zeugs/vision_mock.py` – Bildanalyse und Erkennung
 - `src/config.py` und `src/logger.py` – Konfiguration und Logging
 - `tests/test_room_monitor_server.py` – zentrale API-Tests
