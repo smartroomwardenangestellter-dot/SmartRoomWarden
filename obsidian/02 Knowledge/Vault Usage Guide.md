@@ -21,6 +21,9 @@ Dieser Vault ist die zentrale Wissens- und Arbeitsbasis für SmartRoomWarden. Er
 - Bei jeder Arbeitsphase sollte der Vault zuerst geprüft werden.
 - Die Anleitung in dieser Datei hat Vorrang, wenn Unsicherheit über die richtige Ablage besteht.
 
+## Kurzregeln (Konventionen)
+- Siehe die zentrale [Vault Conventions](Vault%20Conventions.md) Seite für verbindliche Projektkonventionen (z. B. `requirements.txt`, Secrets, Dateinamensregeln).
+
 ## Welche Inhalte wohin?
 - Dashboard: Überblick und heutiger Fokus
 - Project: Projektstatus, Roadmap, Tests, Review, Architektur, offene Aufgaben

@@ -1,20 +1,12 @@
-# Decisions
+# Decision Summary
 
-## Prinzipien
-- Konfiguration über Umgebungsvariablen und eine zentrale Konfigurationsdatei
+Kurzübersicht wichtiger Prinzipien und Entscheidungen. Detaillierte, chronologische Einträge finden sich im [Decision Log](Decision%20Log.md).
+
+Wesentliche Prinzipien (Kurzform):
+- Konfiguration über Umgebungsvariablen und zentrale `src/config.py`
 - Keine Secrets im Quellcode
-- In-Memory-Bildverarbeitung statt temporäre Dateiablage
+- In-Memory-Bildverarbeitung bevorzugen
 - Unit-Tests und Mocks für externe Dienste
-- Zentrales Logging statt Print-Ausgaben
+- Zentrales Logging-Modul
 
-## Wichtige Entscheidungen
-### Dev-Notes als zentrale Wissensbasis
-- Ein eigener Dev-Notes-Bereich dient als Projektgedächtnis.
-- Der Obsidian-Vault wird diese Wissensbasis nun als aktives Werkzeug ergänzen.
-
-### Teststrategie
-- Die Flask-API wird über einen Test-Client simuliert.
-- Externe Google-Services werden durch Mocks abgedeckt.
-
-### Logging-Strategie
-- Ein zentrales Logging-Modul soll die Ausgaben konsistent machen.
+Für den vollständigen Verlauf und Datumsstempel siehe [Decision Log](Decision%20Log.md).
