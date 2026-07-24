@@ -9,10 +9,10 @@
 - Startup- und Konfigurationsprüfung als festen Betriebspunkt festhalten und erweitern
 
 ## Mittelfristig
-- vollständige Fehler- und Konfigurationsdokumentation im Dev Notes Bereich
-- `docs/dev_notes/operations.md` für Betriebsanweisungen erstellen
-- Mock- und Staging-Strategien für Google-Integration dokumentieren
-- mögliche Refactorings in `decisions.md` sammeln
+- [x] vollständige Fehler- und Konfigurationsdokumentation im Dev Notes Bereich
+- [ ] `docs/dev_notes/operations.md` für Betriebsanweisungen erstellen
+- [ ] Mock- und Staging-Strategien für Google-Integration dokumentieren
+- [ ] mögliche Refactorings in `decisions.md` sammeln
 
 ## Langfristig
 - Infrastruktur- und Deployment-Notizen ergänzen
