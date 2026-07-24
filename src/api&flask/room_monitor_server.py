@@ -97,6 +97,12 @@ def get_credentials():
 
 
 def get_services():
+    issues = validate_configuration()
+    if issues:
+        joined_issues = ", ".join(issues)
+        logger.error("Google-Dienste nicht verfügbar: %s", joined_issues)
+        raise RuntimeError(f"Google services unavailable: {joined_issues}")
+
     creds = get_credentials()
 
     calendar_service = build(
@@ -202,7 +208,11 @@ def upload():
     try:
         calendar_service, gmail_service = get_services()
         event, start_dt = get_current_event(calendar_service)
+    except Exception:
+        logger.exception("Upload-Initialisierung fehlgeschlagen")
+        return Response("Dienst nicht verfügbar", status=503)
 
+    try:
         if not event:
             return Response("Kein aktiver Termin", status=200)
 
