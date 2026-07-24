@@ -19,5 +19,6 @@ Dies ist die zentrale Startseite für das Projekt im Vault.
 - [Decision Log](Decision%20Log.md)
 - [Operating Rules](Operating%20Rules.md)
 - [Vault Workflow](Vault%20Workflow.md)
+- [Productive Vault Start](Productive%20Vault%20Start.md)
 - [Project Learnings](Project%20Learnings.md)
 - [Next Steps Plan](Next%20Steps%20Plan.md)

@@ -1,17 +1,19 @@
+import os
+from typing import Any
+
 import cv2
 import numpy as np
-import os
 from ultralytics import YOLO
 
 BASE_DIR = os.path.dirname(__file__)
 MODEL_PATH = os.path.join(BASE_DIR, "yolov8n.pt")
 
-# KI-Modell laden
-model = YOLO(MODEL_PATH)
+
+def get_model() -> Any:
+    return YOLO(MODEL_PATH)
 
 
-def check_raum_status(image_bytes):
-
+def check_raum_status(image_bytes: bytes) -> bool:
     image_array = np.frombuffer(image_bytes, dtype=np.uint8)
     img = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
 
@@ -19,7 +21,12 @@ def check_raum_status(image_bytes):
         print("[OKI] FEHLER: Bild konnte nicht dekodiert werden!")
         return False
 
-    results = model(img, verbose=False)
+    try:
+        model = get_model()
+        results = model(img, verbose=False)
+    except Exception as exc:
+        print(f"[OKI] FEHLER: Modell-Analyse fehlgeschlagen: {exc}")
+        return False
 
     people_count = 0
 
@@ -34,9 +41,8 @@ def check_raum_status(image_bytes):
         print(f"[OKI] Ergebnis: {people_count} Person(en) gefunden!")
         return True
 
-    else:
-        print("[OKI] Ergebnis: Keine Personen gefunden!")
-        return False
+    print("[OKI] Ergebnis: Keine Personen gefunden!")
+    return False
 
 
 if __name__ == "__main__":
