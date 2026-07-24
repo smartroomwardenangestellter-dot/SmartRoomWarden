@@ -2,7 +2,7 @@
 
 ## Komponenten
 
-### `src/api&flask/room_monitor_server.py`
+### `src/api_flask/room_monitor_server.py`
 - Haupt-API-Server mit Flask
 - Authentifizierung per Header-Token (`X-Device-Token`)
 - Google-Integration für Kalender (`calendar.events().list`) und Gmail (`messages().send`)
@@ -59,7 +59,7 @@
 - `DEVICE_TOKEN` ist direkt im Code hartkodiert
 - `OWN_EMAIL` ist ebenfalls fest hinterlegt
 - `credentials.json` und `token.json` werden aus dem Arbeitsverzeichnis geladen
-- `.gitignore` enthält `credentials.json` und `token.json`, aber nicht unbedingt Pfade in `src/api&flask`
+- `.gitignore` enthält `credentials.json` und `token.json`, aber nicht unbedingt Pfade in `src/api_flask`
 - Aktuelle Struktur unterstützt keine externe Konfigurationsdatei außerhalb des Projekts
 
 ## Technische Schulden

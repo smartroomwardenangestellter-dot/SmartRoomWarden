@@ -2,7 +2,7 @@
 
 ## Wichtige Pfade
 - Projekt-Root: `c:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden`
-- Haupt-Server: `src/api&flask/room_monitor_server.py`
+- Haupt-Server: `src/api_flask/room_monitor_server.py`
 - Vision-Modul: `src/ki_zeugs/vision_mock.py`
 - Konfiguration: `src/config.py`
 - Logging: `src/logger.py`
@@ -19,7 +19,7 @@
 
 ## Nützliche Kommandos
 - Tests ausführen: `python -m unittest discover -s tests -p 'test_*.py'`
-- Server starten (Entwicklungsmodus): `python src/api&flask/room_monitor_server.py`
+- Server starten (Entwicklungsmodus): `python src/api_flask/room_monitor_server.py`
 - Requirements installieren: `python -m pip install -r requirements.txt`
 
 ## Checkpoints

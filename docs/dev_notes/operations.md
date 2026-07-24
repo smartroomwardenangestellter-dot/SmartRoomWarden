@@ -63,7 +63,7 @@ Der erwartete Verifikationsstand für den aktuellen Prototyp ist:
 ### 3. Start des Servers
 
 ```powershell
-python src/api&flask/room_monitor_server.py
+python src/api_flask/room_monitor_server.py
 ```
 
 ### 4. Start-Sequenz für den ersten Betrieb

@@ -3,7 +3,7 @@
 ## Kurzfristig (innerhalb der nächsten Sessions)
 - `tests/test_room_monitor_server.py` weiter ausbauen
 - `vision_mock.py` testbar machen und zusätzliche Unit-Tests ergänzen
-- `src/api&flask/room_monitor_server.py` auf modulare Servicelayer umstellen
+- `src/api_flask/room_monitor_server.py` auf modulare Servicelayer umstellen
 - `.gitignore` final prüfen und sichern
 - `current_state.md` aktualisieren, sobald sich Architektur ändert
 - Startup- und Konfigurationsprüfung als festen Betriebspunkt festhalten und erweitern
