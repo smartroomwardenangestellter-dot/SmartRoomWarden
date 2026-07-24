@@ -66,6 +66,108 @@ Der erwartete Verifikationsstand für den aktuellen Prototyp ist:
 python src/api&flask/room_monitor_server.py
 ```
 
+### 4. Start-Sequenz für den ersten Betrieb
+
+1. In das Projekt-Verzeichnis wechseln.
+2. Die virtuelle Umgebung aktivieren.
+3. Abhängigkeiten prüfen und falls nötig installieren.
+4. Tests ausführen, bevor der Server gestartet wird.
+5. Den Server mit dem Projekt-Interpreter starten.
+6. Nach dem Start den Health-/Statuspfad prüfen.
+
+### 5. Checkliste nach dem Start
+
+- Der Flask-Server ist ohne Importfehler hochgefahren.
+- Die Konfigurationsprüfung läuft ohne unerwartete Abbrüche.
+- Die Logs zeigen keine kritischen Fehlermeldungen zum Start.
+- Der Status-Endpunkt ist erreichbar und signalisiert den erwarteten Zustand.
+
+## Betriebskontrolle und Monitoring
+
+### Wichtige Laufzeitindikatoren
+
+Für die erste operative Nutzung sind die folgenden Punkte relevant:
+
+- die Logausgabe im `logs/`-Ordner
+- das Verhalten bei fehlenden Google-Credentials
+- das Verhalten bei leeren, ungültigen oder nicht dekodierbaren Bilddaten
+- die Mail-/Benachrichtigungslogik bei aktiver Zeitplanung
+
+### Erwartete Logs
+
+Menschen, die den Server betreiben, sollten in den Logdateien die folgenden Ereignisklassen erkennen:
+
+- Systemstart
+- Konfigurationsprüfung
+- Upload und Bildanalyse
+- Kalender- oder Terminstatus
+- Benachrichtigungssendungen
+- Fehler bei Google-Service- oder Mail-Laufzeit
+
+## Fehlerfall- und Recovery-Protokoll
+
+### Problem: fehlende Google-Credentials oder Token
+
+Symptom:
+
+- die Konfigurationsprüfung meldet fehlende Dateien
+- der Server läuft in eine degradierte Form, statt komplett abzubrechen
+
+Maßnahme:
+
+- den Betrieb nur mit validen lokalen Credentials fortsetzen
+- die fehlenden Dateien nicht in das Repository aufnehmen
+- die Ursache im Log nachvollziehbar dokumentieren
+
+### Problem: kein oder ungültiges Bild
+
+Symptom:
+
+- Upload kommt an, aber die Bilddekodierung schlägt fehl
+- der Server dokumentiert den Fehler sauber und setzt den Lauf fort
+
+Maßnahme:
+
+- das Bild erneut senden oder die Aufnahme überprüfen
+- die Log-Ausgabe zur Ursache lesen
+- den Ablauf nicht als Crash interpretieren
+
+### Problem: Service- oder Google-Request-Fehler
+
+Symptom:
+
+- der Dienst ist nicht erreichbar oder meldet Laufzeitfehler
+- der Status-Endpunkt reagiert mit sauberem Fehlerverhalten
+
+Maßnahme:
+
+- den Fehler im Log nachvollziehen
+- die betroffene Integration als externen Service behandeln
+- den weiteren Betrieb nicht durch ein unkontrolliertes Abbrechen unterbrechen
+
+## Stopp- und Wiederanlauf-Prozess
+
+### Sicherer Stop
+
+Der Server sollte mit einem kontrollierten Abbruch beendet werden. Für den ersten Prototyp ist der wichtigste Punkt die saubere Beendigung ohne beschädigte Log- oder Prozesszustände.
+
+### Wiederanlauf
+
+Bei einem Wiederanlauf sind diese Schritte entscheidend:
+
+1. Umgebung wieder aktivieren
+2. Abhängigkeiten prüfen
+3. Tests ausführen
+4. Server neu starten
+5. Nachstart-Checks erneut durchführen
+
+## Team-Workflow für die Betriebsphase
+
+- Änderungen an Server-, Config- oder Logging-Verhalten dokumentieren
+- wichtige Betriebsbeobachtungen in den Dev Notes aufnehmen
+- neue Fehlerfälle in diesem Runbook ergänzen
+- bei echten Google- oder Mail-Integrationsproblemen den Betrieb als separate Problemphase behandeln
+
 ## Konfigurationsprinzipien
 
 Die zentrale Konfiguration wird über die Projektdateien `src/config.py` und `src/logger.py` abgewickelt.
