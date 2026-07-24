@@ -41,6 +41,29 @@ logger = get_logger("room_monitor_server")
 app = Flask(__name__)
 
 
+def validate_configuration():
+    issues = []
+
+    if not DEVICE_TOKEN:
+        issues.append("Device token is not configured")
+
+    if not OWN_EMAIL:
+        issues.append("Own email is not configured")
+
+    if not GOOGLE_CREDENTIALS_PATH.exists():
+        issues.append("Google credentials file not found")
+
+    if not GOOGLE_TOKEN_PATH.exists():
+        issues.append("Google token file not found")
+
+    return issues
+
+
+configuration_issues = validate_configuration()
+if configuration_issues:
+    logger.warning("Konfigurationsprüfung fehlgeschlagen: %s", ", ".join(configuration_issues))
+
+
 def get_credentials():
     creds = None
 
@@ -156,8 +179,12 @@ def status():
     if not token_ok():
         return Response("unauthorized", status=401)
 
-    calendar_service, _ = get_services()
-    event, start_dt = get_current_event(calendar_service)
+    try:
+        calendar_service, _ = get_services()
+        event, _ = get_current_event(calendar_service)
+    except Exception:
+        logger.exception("Status-Abfrage fehlgeschlagen")
+        return Response("Dienst nicht verfügbar", status=503)
 
     if event:
         logger.info("Termin aktiv")
@@ -190,6 +217,10 @@ def upload():
         if raum_besetzt:
             logger.info("Raum besetzt")
             return Response("Raum besetzt", status=200)
+
+        if start_dt is None:
+            logger.error("Aktiver Termin ohne Startzeit gefunden")
+            return Response("Server Fehler", status=500)
 
         termin_laeuft_seit = datetime.now(timezone.utc) - start_dt
         if termin_laeuft_seit.total_seconds() < 10 * 60:

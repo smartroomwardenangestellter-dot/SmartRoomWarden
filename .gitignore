@@ -4,5 +4,14 @@ __pycache__/
 .vscode/
 credentials.json
 token.json
+*.pem
+*.p12
+*.key
+*.env
+.env*
+.env.local
+.env.*.local
 logs/
 tests/test_run_output.txt
+*.sqlite
+*.db

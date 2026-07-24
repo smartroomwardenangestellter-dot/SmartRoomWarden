@@ -6,6 +6,7 @@
 - `src/api&flask/room_monitor_server.py` auf modulare Servicelayer umstellen
 - `.gitignore` final prüfen und sichern
 - `current_state.md` aktualisieren, sobald sich Architektur ändert
+- Startup- und Konfigurationsprüfung als festen Betriebspunkt festhalten und erweitern
 
 ## Mittelfristig
 - vollständige Fehler- und Konfigurationsdokumentation im Dev Notes Bereich

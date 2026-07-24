@@ -38,19 +38,19 @@ Diese Datei enthält die abgeleiteten Aufgaben und Issues aus dem Sprintplan fü
 ## Woche 2: Konfiguration, RAM-Verarbeitung und Startup
 
 ### TODOs
-- [ ] Zentrale Konfiguration implementieren
+- [x] Zentrale Konfiguration implementieren
   - `config.py` anlegen
   - Umgebungsvariablen einführen: `GOOGLE_CREDENTIALS_PATH`, `GOOGLE_TOKEN_PATH`, `SMARTROOMWARDEN_DEVICE_TOKEN`
-- [ ] Sensitive Daten aus dem Code entfernen
+- [x] Sensitive Daten aus dem Code entfernen
   - harte Pfade ersetzen
   - Secrets nicht mehr direkt im `room_monitor_server.py` speichern
 - [ ] `.gitignore` prüfen und sensible Dateien ergänzen
-- [ ] Upload-Endpoint so umbauen, dass Bilder im RAM verarbeitet werden
+- [x] Upload-Endpoint so umbauen, dass Bilder im RAM verarbeitet werden
   - `request.get_data()` nutzen
   - `cv2.imdecode()` verwenden
-- [ ] Vision-Modul anpassen, damit es `bytes` oder `ndarray` entgegennimmt
-- [ ] Temporäre Dateioperationen aus der Bildpipeline entfernen
-- [ ] Startup- und Konfigurationsprüfung einführen
+- [x] Vision-Modul anpassen, damit es `bytes` oder `ndarray` entgegennimmt
+- [x] Temporäre Dateioperationen aus der Bildpipeline entfernen
+- [x] Startup- und Konfigurationsprüfung einführen
   - zentrale Prüfung auf notwendige Ressourcen
   - Fehlermeldungen bei fehlenden Konfigurationen
 
