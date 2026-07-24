@@ -5,12 +5,14 @@ SRC_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SRC_DIR.parent
 KI_DIR = SRC_DIR / "ki_zeugs"
 LOG_DIR = PROJECT_ROOT / "logs"
+RUNTIME_MODE = os.getenv("SMARTROOMWARDEN_RUNTIME_MODE") or "simulation"
 
 
-def _load_dotenv() -> None:
-    dotenv_path = PROJECT_ROOT / ".env"
+def _read_dotenv_lines(dotenv_path: Path) -> dict[str, str]:
+    values: dict[str, str] = {}
+
     if not dotenv_path.exists():
-        return
+        return values
 
     for raw_line in dotenv_path.read_text(encoding="utf-8").splitlines():
         line = raw_line.strip()
@@ -20,8 +22,24 @@ def _load_dotenv() -> None:
         key, value = line.split("=", 1)
         key = key.strip()
         value = value.strip().strip('"').strip("'")
-        if key and key not in os.environ:
+        if key:
+            values[key] = value
+
+    return values
+
+
+def _load_dotenv() -> None:
+    base_values = _read_dotenv_lines(PROJECT_ROOT / ".env")
+    mode_values = _read_dotenv_lines(PROJECT_ROOT / f".env.{RUNTIME_MODE}")
+
+    for key, value in base_values.items():
+        os.environ.setdefault(key, value)
+
+    for key, value in mode_values.items():
+        if key in os.environ and os.environ.get(key) == base_values.get(key):
             os.environ[key] = value
+        else:
+            os.environ.setdefault(key, value)
 
 
 _load_dotenv()

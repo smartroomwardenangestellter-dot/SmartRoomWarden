@@ -28,17 +28,37 @@ Falls die Aktivierung in PowerShell blockiert ist, kann vorher folgendes genutzt
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
-### 3. Abhängigkeiten installieren
+### 3. Laufzeitprofil konfigurieren
+Für lokale Simulationen und für echte System-Deploys sollten getrennte Konfigurationsprofile verwendet werden:
+
+- `.env` enthält gemeinsame Basiswerte
+- `.env.simulation` enthält die lokale Simulationskonfiguration
+- `.env.system` enthält die Konfiguration für den echten System-Clone
+
+Ein typischer Start für Simulationen sieht so aus:
+```powershell
+$env:SMARTROOMWARDEN_RUNTIME_MODE = "simulation"
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -p 'test_*.py'
+```
+
+Für den echten System-Clone wird stattdessen das passende Laufzeitprofil verwendet:
+```powershell
+$env:SMARTROOMWARDEN_RUNTIME_MODE = "system"
+python src/api&flask/room_monitor_server.py
+```
+
+### 4. Abhängigkeiten installieren
 ```powershell
 python -m pip install -r requirements.txt
 ```
 
-### 4. Tests ausführen
+### 5. Tests ausführen
 ```powershell
 python -m unittest discover -s tests -p 'test_*.py'
 ```
 
-### 5. Server starten
+### 6. Server starten
 ```powershell
 python src/api&flask/room_monitor_server.py
 ```
