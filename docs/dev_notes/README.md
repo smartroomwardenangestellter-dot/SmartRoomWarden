@@ -21,4 +21,4 @@ Diese Wissensbasis dient als zentrale Dokumentation für wichtige Erkenntnisse, 
 - Jede Änderung am Code oder an der Architektur sollte hier ergänzt werden
 - Testläufe werden unter `test_runs.md` dokumentiert
 - Wenn neue Erkenntnisse entstehen, werden sie in `current_state.md` und `decisions.md` eingetragen
-- Dieses Verzeichnis ist der Ort, an dem alle wichtigen Hinweise gesammelt und geordnet werden
+- Dieses Verzeichnis bleibt die stabile Projekt-Dokumentation; der lokale Obsidian-Vault unter `obsidian/` ist die aktive Arbeits- und Wissensbasis
