@@ -24,3 +24,4 @@
 - [Sprint Board](../01%20Project/Sprint%20Board.md)
 - [Vault Usage Guide](../02%20Knowledge/Vault%20Usage%20Guide.md)
 - [Knowledge Map](../02%20Knowledge/Knowledge%20Map.md)
+- [Vault Conventions](../02%20Knowledge/Vault%20Conventions.md)

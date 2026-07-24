@@ -14,4 +14,4 @@
 - Bildverarbeitung auf RAM-basierten Workflow umstellen
 
 ## Arbeitsregel
-- Wenn ich eine neue Python-Bibliothek installiere, ergänze ich sie sofort in requirements.txt, idealerweise über pip freeze oder eine entsprechende Dependency-Management-Änderung.
+- Siehe zentrale Konventionen: [Vault Conventions](02%20Knowledge/Vault%20Conventions.md) — dort steht, dass `requirements.txt` bei neuen Paketen aktualisiert werden muss.
