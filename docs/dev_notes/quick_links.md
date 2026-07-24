@@ -6,8 +6,10 @@
 - Vision-Modul: `src/ki_zeugs/vision_mock.py`
 - Konfiguration: `src/config.py`
 - Logging: `src/logger.py`
+- Logs-Verzeichnis: `logs/`
 - Tests: `tests/test_room_monitor_server.py`
 - Dev Notes: `docs/dev_notes/`
+- Betriebs-Runbook: `docs/dev_notes/operations.md`
 
 ## Wichtige Umgebungsvariablen
 - `SMARTROOMWARDEN_DEVICE_TOKEN`
