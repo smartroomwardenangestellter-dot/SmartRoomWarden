@@ -20,3 +20,10 @@
 - Mocks für Google-Services und Bildanalyse funktionieren zuverlässig
 - Test-Client-Setup ist geeignet für weitere API-Simulationen
 - `room_monitor_server.py` kann weiterhin verbessert werden, um extern konfigurierte Google-Credentials abzudecken
+
+## 2026-07-24: ImportError bei Tests
+
+- Fehler: `ModuleNotFoundError: No module named 'certifi'`
+- Ursache: Die lokale Python-Umgebung des Projekts hatte die Abhängigkeit `certifi` nicht installiert.
+- Lösung: `certifi` im Projekt-Environment installieren.
+- Verifikation: Der Testlauf wurde danach erneut ausgeführt und der Import-Fehler war behoben.
