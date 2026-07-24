@@ -21,13 +21,14 @@
 ## Aktueller Zustand
 
 ### Stabilität
-- Basis-Funktionalität ist vorhanden
+- Der erste funktionale Prototyp ist auf `main` verifiziert
 - API-Endpunkte funktionieren mit Test-Client-Simulation
 - Google-Credentials fehlen in der lokalen Testumgebung, daher werden Google-Services nicht produktiv getestet
+- Die Betriebsdokumentation wird im aktuellen Branch `feature/ops-runbook` als Runbook-Prototyp weitergeführt
 
 ### Tests
 - `tests/test_room_monitor_server.py` simuliert API-Aufrufe und mocks die Service-Aufrufe
-- 7 Tests wurden erstellt und laufen erfolgreich
+- Die aktuelle Regressionstest-Suite läuft erfolgreich mit 12 Tests
 
 ### Probleme
 - `room_monitor_server.py` verwendet derzeit noch direkte `sys.path`-Manipulation
@@ -39,4 +40,5 @@
 - `docs/dev_notes/test_runs.md` regelmäßig pflegen
 - `docs/dev_notes/decisions.md` mit Architekturentscheidungen füllen
 - `docs/dev_notes/quick_links.md` mit wichtigen Pfaden/Umgebungsvariablen ergänzen
+- `docs/dev_notes/operations.md` als erste Betriebs- und Runbook-Basis weiter ausbauen
 - `.gitignore` auf weitere sensible Dateien prüfen

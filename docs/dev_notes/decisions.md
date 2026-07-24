@@ -27,3 +27,13 @@
 - Zentrales `logger.py` mit RotatingFileHandler
 - Log-Ausgaben sollen sowohl Konsole als auch Logdateien bedienen
 - Die Log-Struktur ermöglicht spätere Analyse und Debugging
+
+### 5. Branch- und Release-Strategie für den Prototyp
+- `main` bleibt der verifizierte Prototype-Release-Stand
+- neue, klar abgegrenzte Roadmap-Phasen werden auf separaten Branches umgesetzt
+- der Branch `feature/ops-runbook` dient der Betriebs- und Runbook-Phase ohne das Produktverhalten zu verändern
+
+### 6. Betriebsdokumentationsstrategie
+- die Dev-Notes werden als stabile Projekt-Dokumentation gepflegt
+- ein Runbook-Prototyp in `docs/dev_notes/operations.md` dokumentiert erste Betriebs-Checks, Fehlerfälle und Recovery-Schritte
+- Teammitglieder sollen damit den aktuellen Betriebszustand ohne Code-Risiko nachvollziehen können
