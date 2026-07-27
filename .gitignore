@@ -29,3 +29,5 @@ token.json
 Thumbs.db
 logs/
 tests/test_run_output.txt
+credentials/*
+!credentials/.gitkeep

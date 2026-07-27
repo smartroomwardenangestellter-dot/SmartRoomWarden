@@ -7,6 +7,19 @@
 - Ergebnis: `OK`
 - Anzahl Tests: 19
 
+## 2026-07-27: Live-Server-Test mit echter HTTP-Simulation
+
+- Umgebung: lokale Projekt-Umgebung `.venv`
+- Ausführung: `python -m unittest discover -s tests -p 'test_config.py'` und `python -m unittest discover -s tests -p 'test_*.py'`
+- Ergebnis: `OK`, 20 Tests
+- Live-HTTP-Checks:
+  - `GET /health` → `200 {"status":"ok"}`
+  - `POST /upload` mit Dummy-Body und Token → `200 Kein aktiver Termin`
+- Erkenntnisse:
+  - Die Konfiguration wird jetzt zuverlässig aus `.env.system` geladen, wenn kein expliziter Runtime-Modus gesetzt ist.
+  - Die Google-Credentials-Pfade werden korrekt auf `./credentials/credentials.json` und `./credentials/token.json` aufgelöst.
+  - Der Device-Token muss exakt mit dem ESP- und Client-Code übereinstimmen, sonst wird der Zugriff abgelehnt.
+
 ### Abgedeckte Szenarien
 - `/status` ohne Token → 401 unauthorized
 - `/status` mit aktiver Terminantwort → 200 true

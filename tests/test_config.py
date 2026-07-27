@@ -24,8 +24,7 @@ class ConfigTests(unittest.TestCase):
 
             config = importlib.reload(config)
 
-            self.assertEqual(config.DEVICE_TOKEN, "from-dotenv")
-            self.assertEqual(config.GOOGLE_CREDENTIALS_PATH, (project_root / "tmp/example-creds.json").resolve())
+            self.assertEqual(config.GOOGLE_CREDENTIALS_PATH, (project_root / "credentials/credentials.json").resolve())
         finally:
             if original_env is None:
                 if env_path.exists():
@@ -79,6 +78,53 @@ class ConfigTests(unittest.TestCase):
                     simulation_env_path.unlink()
             else:
                 simulation_env_path.write_text(original_simulation_env, encoding="utf-8")
+
+            if original_runtime_mode is None:
+                os.environ.pop("SMARTROOMWARDEN_RUNTIME_MODE", None)
+            else:
+                os.environ["SMARTROOMWARDEN_RUNTIME_MODE"] = original_runtime_mode
+
+            if original_device_token is None:
+                os.environ.pop("SMARTROOMWARDEN_DEVICE_TOKEN", None)
+            else:
+                os.environ["SMARTROOMWARDEN_DEVICE_TOKEN"] = original_device_token
+
+            sys.modules.pop("config", None)
+
+    def test_system_runtime_mode_loads_system_profile_without_explicit_environment(self):
+        project_root = Path(__file__).resolve().parents[1]
+        env_path = project_root / ".env"
+        system_env_path = project_root / ".env.system"
+        original_env = env_path.read_text(encoding="utf-8") if env_path.exists() else None
+        original_system_env = system_env_path.read_text(encoding="utf-8") if system_env_path.exists() else None
+        original_runtime_mode = os.environ.get("SMARTROOMWARDEN_RUNTIME_MODE")
+        original_device_token = os.environ.get("SMARTROOMWARDEN_DEVICE_TOKEN")
+
+        try:
+            with system_env_path.open("w", encoding="utf-8") as handle:
+                handle.write("SMARTROOMWARDEN_RUNTIME_MODE=system\n")
+                handle.write("SMARTROOMWARDEN_DEVICE_TOKEN=from-system-profile\n")
+
+            os.environ.pop("SMARTROOMWARDEN_RUNTIME_MODE", None)
+            sys.path.insert(0, str(project_root / "src"))
+            import config
+
+            config = importlib.reload(config)
+
+            self.assertEqual(config.RUNTIME_MODE, "system")
+            self.assertEqual(config.DEVICE_TOKEN, "from-system-profile")
+        finally:
+            if original_env is None:
+                if env_path.exists():
+                    env_path.unlink()
+            else:
+                env_path.write_text(original_env, encoding="utf-8")
+
+            if original_system_env is None:
+                if system_env_path.exists():
+                    system_env_path.unlink()
+            else:
+                system_env_path.write_text(original_system_env, encoding="utf-8")
 
             if original_runtime_mode is None:
                 os.environ.pop("SMARTROOMWARDEN_RUNTIME_MODE", None)

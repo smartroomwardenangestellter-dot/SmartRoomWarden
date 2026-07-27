@@ -35,6 +35,8 @@
 - YOLO-Modell wird gecacht, statt bei jedem Upload neu zu laden
 - Konfigurationsprüfung und Server-Start sind deployfreundlicher gestaltet
 - Import-Fallbacks sorgen dafür, dass der Server bei fehlenden optionalen Paketen nicht sofort abstürzt
+- Die Konfigurationslogik lädt `.env.system` jetzt zuverlässig, wenn der Server im System-Modus gestartet wird
+- Die Google-Credentials-Pfade werden jetzt korrekt aus den Projektdateien aufgelöst
 
 ### Offene Aufgaben
 - reale Google-/Mail-Integration auf dem Zielserver verifizieren

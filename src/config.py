@@ -5,9 +5,6 @@ SRC_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SRC_DIR.parent
 KI_DIR = SRC_DIR / "ki_zeugs"
 LOG_DIR = PROJECT_ROOT / "logs"
-RUNTIME_MODE = os.getenv("SMARTROOMWARDEN_RUNTIME_MODE") or "simulation"
-
-
 def _read_dotenv_lines(dotenv_path: Path) -> dict[str, str]:
     values: dict[str, str] = {}
 
@@ -28,18 +25,30 @@ def _read_dotenv_lines(dotenv_path: Path) -> dict[str, str]:
     return values
 
 
+def _get_runtime_mode() -> str:
+    explicit_mode = os.getenv("SMARTROOMWARDEN_RUNTIME_MODE")
+    if explicit_mode:
+        return explicit_mode
+
+    system_profile = PROJECT_ROOT / ".env.system"
+    if system_profile.exists():
+        return "system"
+
+    return "simulation"
+
+
+RUNTIME_MODE = _get_runtime_mode()
+
+
 def _load_dotenv() -> None:
     base_values = _read_dotenv_lines(PROJECT_ROOT / ".env")
     mode_values = _read_dotenv_lines(PROJECT_ROOT / f".env.{RUNTIME_MODE}")
 
     for key, value in base_values.items():
-        os.environ.setdefault(key, value)
+        os.environ[key] = value
 
     for key, value in mode_values.items():
-        if key in os.environ and os.environ.get(key) == base_values.get(key):
-            os.environ[key] = value
-        else:
-            os.environ.setdefault(key, value)
+        os.environ[key] = value
 
 
 _load_dotenv()
