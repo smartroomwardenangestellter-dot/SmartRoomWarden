@@ -4,7 +4,7 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 
 def load_room_monitor_module() -> Any:
@@ -47,6 +47,13 @@ class RoomMonitorServerTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode(), "true")
 
+    def test_health_returns_ok_when_configuration_is_valid(self):
+        with patch.object(self.module, "validate_configuration", return_value=[]):
+            response = self.client.get("/health")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json(), {"status": "ok"})
+
     def test_status_returns_false_when_no_event(self):
         self.module.get_services = Mock(return_value=(Mock(), Mock()))
         self.module.get_current_event = Mock(return_value=(None, None))
@@ -55,6 +62,18 @@ class RoomMonitorServerTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode(), "false")
+
+    def test_get_server_config_uses_environment_overrides(self):
+        with patch.dict(
+            self.module.os.environ,
+            {"SMARTROOMWARDEN_HOST": "127.0.0.1", "SMARTROOMWARDEN_PORT": "8081", "SMARTROOMWARDEN_SSL": "true"},
+            clear=False,
+        ):
+            host, port, ssl_context = self.module.get_server_config()
+
+        self.assertEqual(host, "127.0.0.1")
+        self.assertEqual(port, 8081)
+        self.assertEqual(ssl_context, "adhoc")
 
     def test_status_returns_service_unavailable_when_google_service_init_fails(self):
         self.module.get_services = Mock(side_effect=RuntimeError("boom"))

@@ -1,13 +1,15 @@
 # Roadmap
 
+## Heute
+- Realen Prototyp-Test mit echtem Server und Mail-Workflow starten
+
 ## Kurzfristig
-- Tests stabilisieren und weiter ausbauen
-- Abhängigkeiten und Requirements sauber pflegen
-- Konfiguration und Secrets auslagern
+- Testfälle für Server, Upload und Mailworkflow festhalten
+- Konfiguration und Secrets für lokale Tests absichern
 - Fehler- und Logging-Mechanik verbessern
 
 ## Mittelfristig
-- RAM-basierte Bildverarbeitung vollständig umsetzen
+- RAM-basierte Bildverarbeitung vollständig absichern
 - Betriebsdokumentation und Runbook vorbereiten
 - Mock- und Staging-Strategien für externe Dienste dokumentieren
 
