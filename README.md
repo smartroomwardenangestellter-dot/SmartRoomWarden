@@ -9,6 +9,11 @@ SmartRoomWarden ist ein Projekt zur automatisierten Raumüberwachung über Kamer
 - bei Bedarf Benachrichtigungen senden
 - den Raumstatus für weitere Nutzung bereitstellen
 
+## Aktueller Status
+SmartRoomWarden befindet sich aktuell im ersten funktionalen Prototyp-MVP-Stadium. Der verifizierte Prototype-Stand ist auf dem Main-Branch veröffentlicht. Die Kernlogik für Upload, Raumstatusbestimmung, Bildanalyse und Fehlerbehandlung ist implementiert und durch die vorhandene Regressionstest-Suite abgesichert.
+
+Der Prototyp ist damit für erste interne Nutzung und Weiterentwicklung geeignet. Die verbleibenden Arbeiten an Betrieb, Dokumentation und Real-Integration mit Google-Services werden als separater Post-MVP-Backlog betrachtet.
+
 ## Schnellstart für Entwickler
 
 ### 1. Repository klonen
@@ -37,6 +42,8 @@ python -m pip install -r requirements.txt
 ```powershell
 python -m unittest discover -s tests -p 'test_*.py'
 ```
+
+Der aktuelle MVP-Prototyp ist in der Projekt-Umgebung verifiziert. Der Testlauf auf der aktuellen Arbeitskopie liefert 12 erfolgreiche Tests.
 
 ### 5. Server starten
 ```powershell
