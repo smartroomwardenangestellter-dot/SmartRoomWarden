@@ -23,6 +23,12 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
+Auf Debian oder Linux kann alternativ auch Folgendes verwendet werden:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
 Falls die Aktivierung in PowerShell blockiert ist, kann vorher folgendes genutzt werden:
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
@@ -62,6 +68,13 @@ python -m unittest discover -s tests -p 'test_*.py'
 ```powershell
 python src/api_flask/room_monitor_server.py
 ```
+
+### 7. Health-Check
+Der Server bietet nach dem Start einen einfachen Gesundheitsendpunkt an:
+```powershell
+curl http://127.0.0.1:5000/health
+```
+Er antwortet mit `{"status": "ok"}`, sobald die grundlegende Konfiguration verfügbar ist.
 
 ## Wichtige Projektstrukturen
 - `src/api_flask/room_monitor_server.py` – Haupt-API und Logik für Status/Upload

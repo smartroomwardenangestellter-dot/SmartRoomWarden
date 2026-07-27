@@ -9,13 +9,11 @@ Diese Wissensbasis dient als zentrale Dokumentation für wichtige Erkenntnisse, 
 
 ## Struktur
 - `README.md`: Überblick und Struktur der Dev-Notizen
-- `system_prompt.md`: Arbeitsanweisung für die AI zur Nutzung dieses Bereichs
-- `current_state.md`: Aktueller Projektstatus, Architektur, offene Probleme
+- `current_state.md`: Aktueller Projektstatus, Architektur und offene Punkte
 - `test_runs.md`: Ergebnisse aus Testläufen und Regressionstests
 - `decisions.md`: Wichtige Architektur- und Refactoring-Entscheidungen
-- `roadmap.md`: Fokus, Prioritäten und geplante Schritte
-- `operations.md`: Betriebs- und Runbook-Prototyp für den ersten operativen Nutzungskontext
-- `quick_links.md`: Relevante Pfade, Umgebungsvariablen, Kommandos
+- `operations.md`: Betriebs- und Runbook-Prototyp für den nächsten Server-Deploy-Schritt
+- `quick_links.md`: Relevante Pfade, Umgebungsvariablen und Kommandos
 - `internal/`: AI-interne Arbeitsdokumente und Cleanup-Notizen
 
 ## Pflege

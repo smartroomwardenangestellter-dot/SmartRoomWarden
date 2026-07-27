@@ -1,19 +1,36 @@
 import os
 from typing import Any
 
-import cv2
-import numpy as np
-from ultralytics import YOLO
+try:
+    import cv2
+except ImportError:  # pragma: no cover - optional runtime dependency
+    cv2 = None
+
+try:
+    import numpy as np
+except ImportError:  # pragma: no cover - optional runtime dependency
+    np = None
+
+try:
+    from ultralytics import YOLO
+except ImportError:  # pragma: no cover - optional runtime dependency
+    YOLO = None
 
 BASE_DIR = os.path.dirname(__file__)
 MODEL_PATH = os.path.join(BASE_DIR, "yolov8n.pt")
 
 
 def get_model() -> Any:
+    if YOLO is None:
+        raise RuntimeError("ultralytics is not installed")
     return YOLO(MODEL_PATH)
 
 
-def check_raum_status(image_bytes: bytes) -> bool:
+def check_raum_status(image_bytes: bytes, model: Any | None = None) -> bool:
+    if np is None or cv2 is None:
+        print("[OKI] FEHLER: Bildverarbeitung ist nicht verfügbar")
+        return False
+
     image_array = np.frombuffer(image_bytes, dtype=np.uint8)
     img = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
 
@@ -22,8 +39,8 @@ def check_raum_status(image_bytes: bytes) -> bool:
         return False
 
     try:
-        model = get_model()
-        results = model(img, verbose=False)
+        model_to_use = model or get_model()
+        results = model_to_use(img, verbose=False)
     except Exception as exc:
         print(f"[OKI] FEHLER: Modell-Analyse fehlgeschlagen: {exc}")
         return False

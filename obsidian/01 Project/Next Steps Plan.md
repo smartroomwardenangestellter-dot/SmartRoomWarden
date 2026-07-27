@@ -1,13 +1,17 @@
 # Next Steps Plan
 
+## Heute
+- Realen Prototyp mit echtem Server und realen Upload-/Mail-Schritten testen
+- Server-Start, Upload-Endpunkt und Bildverarbeitung mit echten Daten prüfen
+- Mail-/Benachrichtigungsfluss und Fehlerfälle dokumentieren
+
 ## Kurzfristig
-- Tests weiter ausbauen und stabil halten
-- Abhängigkeiten und Requirements sauber pflegen
-- Konfiguration und Secrets auslagern
-- Fehlerbehandlung und Logging verbessern
+- Konfiguration und Secrets für lokale Tests sauber prüfen
+- Fehlerbehandlung, Logging und Rückmeldungen bei externen Diensten verbessern
+- Testfälle und Beobachtungen im Vault festhalten
 
 ## Mittelfristig
-- RAM-basierte Bildverarbeitung vollständig umsetzen
+- RAM-basierte Bildverarbeitung vollständig absichern
 - Dokumentation und Vault regelmäßig weiter pflegen
 - Projektwissen im Vault auf aktuellem Stand halten
 
