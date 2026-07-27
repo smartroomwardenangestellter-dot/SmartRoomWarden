@@ -2,20 +2,31 @@
 
 import os
 import sys
-import certifi
 import base64
 
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 from email.mime.text import MIMEText
 from datetime import datetime, timezone
 
-os.environ["SSL_CERT_FILE"] = certifi.where()
-os.environ["REQUESTS_CA_BUNDLE"] = certifi.where()
+try:
+    import certifi
+except ImportError:  # pragma: no cover - optional runtime dependency
+    certifi = None
 
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
+if certifi is not None:
+    os.environ["SSL_CERT_FILE"] = certifi.where()
+    os.environ["REQUESTS_CA_BUNDLE"] = certifi.where()
+
+try:
+    from google.auth.transport.requests import Request
+    from google.oauth2.credentials import Credentials
+    from google_auth_oauthlib.flow import InstalledAppFlow
+    from googleapiclient.discovery import build
+except ImportError:  # pragma: no cover - optional runtime dependency
+    Request = None
+    Credentials = None
+    InstalledAppFlow = None
+    build = None
 
 from pathlib import Path
 
@@ -25,7 +36,7 @@ SRC_DIR = BASE_DIR.parent
 sys.path.insert(0, str(SRC_DIR))
 
 from config import GOOGLE_CREDENTIALS_PATH, GOOGLE_TOKEN_PATH, DEVICE_TOKEN, OWN_EMAIL
-from ki_zeugs.vision_mock import check_raum_status
+from ki_zeugs.vision_mock import check_raum_status, get_model
 from logger import get_logger, setup_logging
 
 SCOPES = [
@@ -39,6 +50,9 @@ setup_logging()
 logger = get_logger("room_monitor_server")
 
 app = Flask(__name__)
+
+
+MODEL_CACHE = {}
 
 
 def validate_configuration():
@@ -65,6 +79,9 @@ if configuration_issues:
 
 
 def get_credentials():
+    if Credentials is None or Request is None or InstalledAppFlow is None:
+        raise RuntimeError("Google client libraries are not available")
+
     creds = None
 
     if GOOGLE_TOKEN_PATH.exists():
@@ -97,6 +114,15 @@ def get_credentials():
 
 
 def get_services():
+    if build is None:
+        raise RuntimeError("Google client libraries are not available")
+
+    issues = validate_configuration()
+    if issues:
+        joined_issues = ", ".join(issues)
+        logger.error("Google-Dienste nicht verfügbar: %s", joined_issues)
+        raise RuntimeError(f"Google services unavailable: {joined_issues}")
+
     creds = get_credentials()
 
     calendar_service = build(
@@ -134,6 +160,20 @@ def token_ok():
         logger.warning("Falscher oder fehlender Device-Token")
 
     return token == DEVICE_TOKEN
+
+
+def get_cached_model():
+    if "vision" not in MODEL_CACHE:
+        MODEL_CACHE["vision"] = get_model()
+    return MODEL_CACHE["vision"]
+
+
+def get_server_config():
+    host = os.getenv("SMARTROOMWARDEN_HOST", "0.0.0.0")
+    port = int(os.getenv("SMARTROOMWARDEN_PORT", "5000"))
+    ssl_enabled = os.getenv("SMARTROOMWARDEN_SSL", "false").lower() in {"1", "true", "yes", "on"}
+    ssl_context = "adhoc" if ssl_enabled else None
+    return host, port, ssl_context
 
 
 def get_current_event(calendar_service):
@@ -174,6 +214,15 @@ def get_current_event(calendar_service):
     return None, None
 
 
+@app.route("/health", methods=["GET"])
+def health():
+    issues = validate_configuration()
+    if issues:
+        return jsonify({"status": "error", "issues": issues}), 503
+
+    return jsonify({"status": "ok"})
+
+
 @app.route("/status", methods=["GET"])
 def status():
     if not token_ok():
@@ -202,7 +251,11 @@ def upload():
     try:
         calendar_service, gmail_service = get_services()
         event, start_dt = get_current_event(calendar_service)
+    except Exception:
+        logger.exception("Upload-Initialisierung fehlgeschlagen")
+        return Response("Dienst nicht verfügbar", status=503)
 
+    try:
         if not event:
             return Response("Kein aktiver Termin", status=200)
 
@@ -212,7 +265,8 @@ def upload():
             return Response("Kein Bild", status=400)
 
         logger.info("Bild empfangen, starte Analyse")
-        raum_besetzt = check_raum_status(image_bytes)
+        model = get_cached_model()
+        raum_besetzt = check_raum_status(image_bytes, model=model)
 
         if raum_besetzt:
             logger.info("Raum besetzt")
@@ -272,8 +326,9 @@ Smart Room Warden
 
 
 if __name__ == "__main__":
+    host, port, ssl_context = get_server_config()
     app.run(
-        host="0.0.0.0",
-        port=5000,
-        ssl_context='adhoc',
+        host=host,
+        port=port,
+        ssl_context=ssl_context,
     )

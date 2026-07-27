@@ -22,3 +22,4 @@ Dies ist die zentrale Startseite für das Projekt im Vault.
 - [Productive Vault Start](Productive%20Vault%20Start.md)
 - [Project Learnings](Project%20Learnings.md)
 - [Next Steps Plan](Next%20Steps%20Plan.md)
+- [Vault Conventions](../02%20Knowledge/Vault%20Conventions.md)

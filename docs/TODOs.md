@@ -9,7 +9,7 @@ Diese Datei enthält die abgeleiteten Aufgaben und Issues aus dem Sprintplan fü
 
 ### TODOs
 - [ ] Audit der aktuellen Codebasis durchführen
-  - `src/api&flask/room_monitor_server.py` analysieren
+  - `src/api_flask/room_monitor_server.py` analysieren
   - `src/ki_zeugs/vision_mock.py` analysieren
 - [ ] Verantwortlichkeiten der Module dokumentieren
   - API / HTTP / Google-Integration
@@ -67,24 +67,24 @@ Diese Datei enthält die abgeleiteten Aufgaben und Issues aus dem Sprintplan fü
 ## Woche 3: Logging, Fehlerhandling und Stabilisierung
 
 ### TODOs
-- [ ] Zentrales Logging einrichten
+- [x] Zentrales Logging einrichten
   - Python `logging` konfigurieren
   - Rotating File Handler einrichten
   - Logverzeichnis (`logs/`) anlegen
-- [ ] Ereignisse loggen
+- [x] Ereignisse loggen
   - Systemstart
   - Konfigurationsprüfung
   - Uploads und Bildanalysen
   - erkannte Ghost Meetings
   - versendete Benachrichtigungen
-- [ ] Fehlerbehandlung verbessern
+- [x] Fehlerbehandlung verbessern
   - Flask-Errorhandler einrichten
   - zentrale Ausnahme-Logik definieren
   - klare HTTP-Statuscodes und Fehlermeldungen
-- [ ] Stabilität testen
+- [x] Stabilität testen
   - Fehlerfälle prüfen: fehlende Auth, ungültige Bilder, Kalenderfehler
   - Logausgabe evaluieren
-- [ ] Dokumentation aktualisieren
+- [x] Dokumentation aktualisieren
   - Ergebnisse in `docs/Vorgehen.md` einarbeiten
   - `docs/operations.md` als Betriebs- und Wartungsübersicht beginnen
 

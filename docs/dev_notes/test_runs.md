@@ -1,11 +1,11 @@
 # Test Runs
 
-## 2026-07-23: Flask API Simulation
+## 2026-07-27: Server-Härtung und Health-Check
 
 - Testdatei: `tests/test_room_monitor_server.py`
 - Ausführung: `python -m unittest discover -s tests -p 'test_*.py'`
 - Ergebnis: `OK`
-- Anzahl Tests: 7
+- Anzahl Tests: 19
 
 ### Abgedeckte Szenarien
 - `/status` ohne Token → 401 unauthorized
@@ -15,15 +15,20 @@
 - `/upload` mit leerem Raum und mindestens 10 Minuten laufendem Termin → E-Mail-Versand-Simulation
 - `/upload` mit Person im Raum → 200 Raum besetzt
 - `/upload` ohne aktiven Termin → 200 Kein aktiver Termin
+- `/health` mit gültiger Konfiguration → 200 ok
+- Server-Config-Overrides über Umgebungsvariablen
 
 ### Erkenntnisse
-- Mocks für Google-Services und Bildanalyse funktionieren zuverlässig
-- Test-Client-Setup ist geeignet für weitere API-Simulationen
-- `room_monitor_server.py` kann weiterhin verbessert werden, um extern konfigurierte Google-Credentials abzudecken
+- Die API-Tests sind weiterhin stabil und decken die wichtigsten Routen und Fehlerfälle ab
+- Der neue Health-Endpoint ist sauber abgesichert
+- Die Server-Konfiguration ist für Deploy-Zwecke flexibel einstellbar
 
-## 2026-07-24: ImportError bei Tests
+## 2026-07-23 bis 2026-07-24: Frühere Prototyp-Verifikation
 
-- Fehler: `ModuleNotFoundError: No module named 'certifi'`
-- Ursache: Die lokale Python-Umgebung des Projekts hatte die Abhängigkeit `certifi` nicht installiert.
-- Lösung: `certifi` im Projekt-Environment installieren.
-- Verifikation: Der Testlauf wurde danach erneut ausgeführt und der Import-Fehler war behoben.
+- Ausführung: `python -m unittest discover -s tests -p 'test_*.py'`
+- Umgebung: Projekt-Interpreter der lokalen virtuellen Umgebung `.venv`
+- Ergebnis: Prototyp-Tests erfolgreich
+
+### Erkenntnisse
+- Der Prototyp war zunächst auf einfache Flask- und Upload-Scenario beschränkt
+- Die Dokumentation musste auf den späteren Server-Härtungsstand erweitert werden

@@ -1,7 +1,7 @@
 # Current State
 
 ## Komponenten
-- Flask-API in src/api&flask/room_monitor_server.py
+- Flask-API in src/api_flask/room_monitor_server.py
 - Bildanalyse in src/ki_zeugs/vision_mock.py
 - Konfiguration und Logging in src/config.py und src/logger.py
 

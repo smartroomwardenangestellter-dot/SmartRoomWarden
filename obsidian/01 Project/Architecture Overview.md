@@ -7,7 +7,7 @@
 - Integration: Google Calendar und Gmail
 
 ## Komponenten
-- API-Server: `src/api&flask/room_monitor_server.py`
+- API-Server: `src/api_flask/room_monitor_server.py`
 - Vision: `src/ki_zeugs/vision_mock.py`
 - Konfiguration: `src/config.py`
 - Logging: `src/logger.py`

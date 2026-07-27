@@ -3,40 +3,40 @@
 ## Komponenten
 
 ### API-Server
-- `src/api&flask/room_monitor_server.py`
-- Flask-Anwendung mit den Endpunkten `/status` und `/upload`
+- `src/api_flask/room_monitor_server.py`
+- Flask-Anwendung mit den Endpunkten `/status`, `/upload` und `/health`
 - Prüft Google-Kalendertermine und versendet Gmail-Benachrichtigungen
-- Nutzt `request.get_data()` für Bilddaten
+- Verarbeitet Bilddaten direkt aus dem Request-Body im RAM
 
 ### Bildanalyse
 - `src/ki_zeugs/vision_mock.py`
-- YOLO-basierte Personenerkennung
-- Verarbeitet eingehende Bildbytes und gibt `True` zurück, falls Personen erkannt werden
+- YOLO-basierte Personenerkennung über Ultralytics
+- Verarbeitet Bildbytes und gibt `True` zurück, falls Personen erkannt werden
 
 ### Konfiguration
 - `src/config.py`
 - `src/logger.py`
-- Umgebungskonfiguration für Google-Credentials und Device-Token
+- Umgebungskonfiguration für Google-Credentials, Device-Token und Server-Parameter
 
 ## Aktueller Zustand
 
 ### Stabilität
-- Basis-Funktionalität ist vorhanden
-- API-Endpunkte funktionieren mit Test-Client-Simulation
-- Google-Credentials fehlen in der lokalen Testumgebung, daher werden Google-Services nicht produktiv getestet
+- Der Prototyp ist lokal mit Tests verifiziert
+- Die API-Endpunkte sind mit einem Flask-Test-Client abgesichert
+- Die neue Health-Route `/health` ist verfügbar und dient als einfacher Betriebscheck
+- Google-Credentials und Token bleiben lokal und werden nicht ins Repository verteilt
 
 ### Tests
-- `tests/test_room_monitor_server.py` simuliert API-Aufrufe und mocks die Service-Aufrufe
-- 7 Tests wurden erstellt und laufen erfolgreich
+- `tests/test_room_monitor_server.py` deckt API-Aufrufe und Fehlerszenarien ab
+- Die aktuelle Regressionstest-Suite läuft erfolgreich mit 19 Tests
 
-### Probleme
-- `room_monitor_server.py` verwendet derzeit noch direkte `sys.path`-Manipulation
-- `vision_mock.py` lädt das Modell beim Import, was Startup-Zeit kostet
-- `credentials.json` und `token.json` sind noch nicht extern konfiguriert
-- Fehlertoleranz bei Google-API-Fehlern muss verbessert werden
+### Aktuelle Verbesserungen
+- Health-Endpoint für einfache Systemprüfungen ergänzt
+- YOLO-Modell wird gecacht, statt bei jedem Upload neu zu laden
+- Konfigurationsprüfung und Server-Start sind deployfreundlicher gestaltet
+- Import-Fallbacks sorgen dafür, dass der Server bei fehlenden optionalen Paketen nicht sofort abstürzt
 
-## Offene Aufgaben
-- `docs/dev_notes/test_runs.md` regelmäßig pflegen
-- `docs/dev_notes/decisions.md` mit Architekturentscheidungen füllen
-- `docs/dev_notes/quick_links.md` mit wichtigen Pfaden/Umgebungsvariablen ergänzen
-- `.gitignore` auf weitere sensible Dateien prüfen
+### Offene Aufgaben
+- reale Google-/Mail-Integration auf dem Zielserver verifizieren
+- Betriebs- und Runbook-Dokumentation weiter ausbauen
+- Deployment- und Reverse-Proxy-Konfiguration für Debian 13 vorbereiten

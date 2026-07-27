@@ -4,12 +4,12 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 
 def load_room_monitor_module() -> Any:
     project_root = Path(__file__).resolve().parents[1]
-    module_path = project_root / "src" / "api&flask" / "room_monitor_server.py"
+    module_path = project_root / "src" / "api_flask" / "room_monitor_server.py"
     spec = importlib.util.spec_from_file_location("room_monitor_server", module_path)
     if spec is None or spec.loader is None:
         raise ImportError(f"Could not load module from {module_path}")
@@ -47,6 +47,13 @@ class RoomMonitorServerTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode(), "true")
 
+    def test_health_returns_ok_when_configuration_is_valid(self):
+        with patch.object(self.module, "validate_configuration", return_value=[]):
+            response = self.client.get("/health")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json(), {"status": "ok"})
+
     def test_status_returns_false_when_no_event(self):
         self.module.get_services = Mock(return_value=(Mock(), Mock()))
         self.module.get_current_event = Mock(return_value=(None, None))
@@ -56,8 +63,29 @@ class RoomMonitorServerTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode(), "false")
 
+    def test_get_server_config_uses_environment_overrides(self):
+        with patch.dict(
+            self.module.os.environ,
+            {"SMARTROOMWARDEN_HOST": "127.0.0.1", "SMARTROOMWARDEN_PORT": "8081", "SMARTROOMWARDEN_SSL": "true"},
+            clear=False,
+        ):
+            host, port, ssl_context = self.module.get_server_config()
+
+        self.assertEqual(host, "127.0.0.1")
+        self.assertEqual(port, 8081)
+        self.assertEqual(ssl_context, "adhoc")
+
     def test_status_returns_service_unavailable_when_google_service_init_fails(self):
         self.module.get_services = Mock(side_effect=RuntimeError("boom"))
+
+        response = self.client.get("/status", headers=self.valid_headers)
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.data.decode(), "Dienst nicht verfügbar")
+
+    def test_status_returns_service_unavailable_when_event_lookup_fails(self):
+        self.module.get_services = Mock(return_value=(Mock(), Mock()))
+        self.module.get_current_event = Mock(side_effect=RuntimeError("boom"))
 
         response = self.client.get("/status", headers=self.valid_headers)
 
@@ -117,6 +145,25 @@ class RoomMonitorServerTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode(), "Raum besetzt")
 
+    def test_upload_returns_server_error_when_event_has_no_start_time(self):
+        self.module.get_services = Mock(return_value=(Mock(), Mock()))
+        self.module.get_current_event = Mock(
+            return_value=(
+                {"summary": "Team Meeting"},
+                None,
+            )
+        )
+        self.module.check_raum_status = Mock(return_value=False)
+
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"fake-image-bytes",
+        )
+
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.data.decode(), "Server Fehler")
+
     def test_upload_returns_no_active_event(self):
         self.module.get_services = Mock(return_value=(Mock(), Mock()))
         self.module.get_current_event = Mock(return_value=(None, None))
@@ -129,6 +176,50 @@ class RoomMonitorServerTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode(), "Kein aktiver Termin")
+
+    def test_upload_returns_service_unavailable_when_google_service_init_fails(self):
+        self.module.get_services = Mock(side_effect=RuntimeError("boom"))
+
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"fake-image-bytes",
+        )
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.data.decode(), "Dienst nicht verfügbar")
+
+    def test_upload_skips_owner_email_when_sending_notifications(self):
+        self.module.get_services = Mock(return_value=(Mock(), Mock()))
+        self.module.get_current_event = Mock(
+            return_value=(
+                {
+                    "summary": "Team Meeting",
+                    "attendees": [
+                        {"email": self.module.OWN_EMAIL},
+                        {"email": "guest@example.com"},
+                    ],
+                },
+                datetime.now(timezone.utc) - timedelta(minutes=11),
+            )
+        )
+        self.module.check_raum_status = Mock(return_value=False)
+        self.module.send_email = Mock()
+
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"fake-image-bytes",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("Fertig", response.data.decode())
+        self.module.send_email.assert_called_once_with(
+            self.module.get_services.return_value[1],
+            "guest@example.com",
+            "Raumfreigabe prüfen: Team Meeting",
+            self.module.send_email.call_args.args[3],
+        )
 
     def test_upload_returns_bad_request_for_missing_image(self):
         self.module.get_services = Mock(return_value=(Mock(), Mock()))
