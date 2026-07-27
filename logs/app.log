@@ -1,0 +1,1183 @@
+2026-07-23 15:29:45,273 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-23 15:30:05,730 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-23 15:30:41,313 ERROR room_monitor_server Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 159, in status
+    calendar_service, _ = get_services()
+    ^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:30:41,322 ERROR room_monitor_server Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 159, in status
+    calendar_service, _ = get_services()
+    ^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:30:41,324 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-23 15:30:41,328 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:30:41,331 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:30:41,334 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:30:41,338 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:31:26,581 ERROR room_monitor_server Credentials-Datei nicht gefunden: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,582 ERROR room_monitor_server Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 159, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 77, in get_services
+    creds = get_credentials()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 59, in get_credentials
+    raise FileNotFoundError(
+        f"Google credentials not found: {GOOGLE_CREDENTIALS_PATH}"
+    )
+FileNotFoundError: Google credentials not found: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,589 ERROR room_monitor_server Credentials-Datei nicht gefunden: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,590 ERROR room_monitor_server Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 159, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 77, in get_services
+    creds = get_credentials()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 59, in get_credentials
+    raise FileNotFoundError(
+        f"Google credentials not found: {GOOGLE_CREDENTIALS_PATH}"
+    )
+FileNotFoundError: Google credentials not found: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,595 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-23 15:31:26,596 ERROR room_monitor_server Credentials-Datei nicht gefunden: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,596 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 77, in get_services
+    creds = get_credentials()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 59, in get_credentials
+    raise FileNotFoundError(
+        f"Google credentials not found: {GOOGLE_CREDENTIALS_PATH}"
+    )
+FileNotFoundError: Google credentials not found: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,599 ERROR room_monitor_server Credentials-Datei nicht gefunden: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,599 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 77, in get_services
+    creds = get_credentials()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 59, in get_credentials
+    raise FileNotFoundError(
+        f"Google credentials not found: {GOOGLE_CREDENTIALS_PATH}"
+    )
+FileNotFoundError: Google credentials not found: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,604 ERROR room_monitor_server Credentials-Datei nicht gefunden: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,604 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 77, in get_services
+    creds = get_credentials()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 59, in get_credentials
+    raise FileNotFoundError(
+        f"Google credentials not found: {GOOGLE_CREDENTIALS_PATH}"
+    )
+FileNotFoundError: Google credentials not found: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,609 ERROR room_monitor_server Credentials-Datei nicht gefunden: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:26,609 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 77, in get_services
+    creds = get_credentials()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 59, in get_credentials
+    raise FileNotFoundError(
+        f"Google credentials not found: {GOOGLE_CREDENTIALS_PATH}"
+    )
+FileNotFoundError: Google credentials not found: C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\credentials.json
+2026-07-23 15:31:53,345 ERROR room_monitor_server Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 159, in status
+    calendar_service, _ = get_services()
+    ^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:31:53,350 ERROR room_monitor_server Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 159, in status
+    calendar_service, _ = get_services()
+    ^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:31:53,352 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-23 15:31:53,354 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:31:53,357 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:31:53,361 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:31:53,364 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 176, in upload
+    calendar_service, gmail_service = get_services()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 0)
+2026-07-23 15:33:08,654 INFO room_monitor_server Kein Termin
+2026-07-23 15:33:08,655 INFO room_monitor_server Termin aktiv
+2026-07-23 15:33:08,657 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-23 15:33:08,658 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-23 15:33:08,660 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-23 15:33:08,660 INFO room_monitor_server Raum besetzt
+2026-07-23 15:33:08,662 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-23 15:33:08,662 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-23 15:33:08,664 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-23 16:05:20,629 INFO room_monitor_server Kein Termin
+2026-07-23 16:05:20,632 INFO room_monitor_server Termin aktiv
+2026-07-23 16:05:20,633 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-23 16:05:20,635 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-23 16:05:20,637 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-23 16:05:20,638 INFO room_monitor_server Raum besetzt
+2026-07-23 16:05:20,639 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-23 16:05:20,640 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-23 16:05:20,640 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 08:46:39,536 INFO room_monitor_server Kein Termin
+2026-07-24 08:46:39,538 INFO room_monitor_server Termin aktiv
+2026-07-24 08:46:39,539 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 08:46:39,540 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 08:46:39,541 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 08:46:39,541 INFO room_monitor_server Raum besetzt
+2026-07-24 08:46:39,542 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 08:46:39,542 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 08:46:39,543 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:17:06,771 INFO room_monitor_server Kein Termin
+2026-07-24 10:17:06,775 INFO room_monitor_server Termin aktiv
+2026-07-24 10:17:06,776 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:17:06,778 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:17:06,780 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:17:06,781 INFO room_monitor_server Raum besetzt
+2026-07-24 10:17:06,782 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:17:06,782 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:17:06,784 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:17:41,293 INFO room_monitor_server Kein Termin
+2026-07-24 10:17:41,295 INFO room_monitor_server Termin aktiv
+2026-07-24 10:17:41,297 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:17:41,298 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:17:41,300 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:17:41,300 INFO room_monitor_server Raum besetzt
+2026-07-24 10:17:41,301 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:17:41,302 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:17:41,303 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:22:39,407 INFO room_monitor_server Kein Termin
+2026-07-24 10:22:39,681 INFO room_monitor_server Termin aktiv
+2026-07-24 10:22:39,683 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:22:39,684 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:22:39,686 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:22:39,687 INFO room_monitor_server Raum besetzt
+2026-07-24 10:22:39,689 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:22:39,690 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:22:39,691 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:22:54,146 INFO room_monitor_server Kein Termin
+2026-07-24 10:22:54,148 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 160, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 10:22:54,151 INFO room_monitor_server Termin aktiv
+2026-07-24 10:22:54,152 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:22:54,153 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:22:54,156 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:22:54,157 INFO room_monitor_server Raum besetzt
+2026-07-24 10:22:54,158 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:22:54,159 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:22:54,160 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:28:20,984 INFO room_monitor_server Kein Termin
+2026-07-24 10:28:20,985 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 160, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 10:28:20,988 INFO room_monitor_server Termin aktiv
+2026-07-24 10:28:20,988 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:28:20,990 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:28:20,993 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:28:20,994 INFO room_monitor_server Raum besetzt
+2026-07-24 10:28:20,995 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:28:20,995 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:28:20,996 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:30:50,473 INFO room_monitor_server Kein Termin
+2026-07-24 10:30:50,475 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 160, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 10:30:50,480 INFO room_monitor_server Termin aktiv
+2026-07-24 10:30:50,482 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:30:50,483 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:30:50,486 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:30:50,487 INFO room_monitor_server Raum besetzt
+2026-07-24 10:30:50,488 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:30:50,489 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:30:50,490 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:31:07,290 INFO room_monitor_server Kein Termin
+2026-07-24 10:31:07,292 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 160, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 10:31:07,295 INFO room_monitor_server Termin aktiv
+2026-07-24 10:31:07,296 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:31:07,297 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:31:07,299 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:31:07,299 INFO room_monitor_server Raum besetzt
+2026-07-24 10:31:07,301 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:31:07,301 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:31:07,302 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:34:43,277 INFO room_monitor_server Kein Termin
+2026-07-24 10:34:43,280 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 160, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 10:34:43,283 INFO room_monitor_server Termin aktiv
+2026-07-24 10:34:43,285 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:34:43,286 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:34:43,289 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:34:43,290 INFO room_monitor_server Raum besetzt
+2026-07-24 10:34:43,291 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:34:43,292 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:34:43,292 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:35:25,779 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 10:35:25,853 INFO room_monitor_server Kein Termin
+2026-07-24 10:35:25,855 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 183, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 10:35:25,859 INFO room_monitor_server Termin aktiv
+2026-07-24 10:35:25,861 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:35:25,862 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:35:25,865 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:35:25,865 INFO room_monitor_server Raum besetzt
+2026-07-24 10:35:25,867 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:35:25,867 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:35:25,868 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 10:38:24,508 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 10:38:24,930 INFO room_monitor_server Kein Termin
+2026-07-24 10:38:24,933 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 183, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 10:38:24,941 INFO room_monitor_server Termin aktiv
+2026-07-24 10:38:24,944 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 10:38:24,947 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 10:38:24,952 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:38:24,953 INFO room_monitor_server Raum besetzt
+2026-07-24 10:38:24,956 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 10:38:24,956 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 10:38:24,957 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 12:33:15,239 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 12:33:15,468 INFO room_monitor_server Kein Termin
+2026-07-24 12:33:15,470 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 183, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 12:33:15,474 INFO room_monitor_server Termin aktiv
+2026-07-24 12:33:15,476 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 12:33:15,478 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 12:33:15,480 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 12:33:15,481 INFO room_monitor_server Raum besetzt
+2026-07-24 12:33:15,482 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 12:33:15,483 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 12:33:15,484 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 13:20:21,836 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 13:20:22,048 INFO room_monitor_server Kein Termin
+2026-07-24 13:20:22,049 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 183, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:20:22,052 INFO room_monitor_server Termin aktiv
+2026-07-24 13:20:22,053 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 13:20:22,055 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 13:20:22,057 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:20:22,057 INFO room_monitor_server Raum besetzt
+2026-07-24 13:20:22,058 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:20:22,059 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 13:20:22,059 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 13:30:32,263 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 13:30:32,323 INFO room_monitor_server Kein Termin
+2026-07-24 13:30:32,325 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 183, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:30:32,327 INFO room_monitor_server Termin aktiv
+2026-07-24 13:30:32,328 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 13:30:32,329 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 13:30:32,330 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:30:32,330 INFO room_monitor_server Raum besetzt
+2026-07-24 13:30:32,331 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:30:32,331 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 13:30:32,331 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 13:30:52,790 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 13:30:52,853 INFO room_monitor_server Kein Termin
+2026-07-24 13:30:52,854 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 183, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:30:52,856 INFO room_monitor_server Termin aktiv
+2026-07-24 13:30:52,857 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 13:30:52,858 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 13:30:52,860 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:30:52,861 INFO room_monitor_server Raum besetzt
+2026-07-24 13:30:52,862 ERROR room_monitor_server Unerwarteter Fehler im Upload-Endpoint
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 203, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:30:52,864 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:30:52,865 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 13:30:52,865 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 13:31:28,037 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 13:31:28,095 INFO room_monitor_server Kein Termin
+2026-07-24 13:31:28,096 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 183, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:31:28,098 INFO room_monitor_server Termin aktiv
+2026-07-24 13:31:28,099 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 13:31:28,099 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 13:31:28,101 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:31:28,101 INFO room_monitor_server Raum besetzt
+2026-07-24 13:31:28,102 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 203, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:31:28,103 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:31:28,103 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 13:31:28,104 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 13:37:30,277 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 13:37:30,571 INFO room_monitor_server Kein Termin
+2026-07-24 13:37:30,573 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 189, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:37:30,581 INFO room_monitor_server Termin aktiv
+2026-07-24 13:37:30,583 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 13:37:30,585 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 13:37:30,588 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:37:30,589 INFO room_monitor_server Raum besetzt
+2026-07-24 13:37:30,591 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 209, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:37:30,594 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:37:30,594 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 13:37:30,595 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 13:41:15,146 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 13:41:15,233 INFO room_monitor_server Kein Termin
+2026-07-24 13:41:15,235 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 190, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:41:15,237 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 189, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:41:15,239 INFO room_monitor_server Termin aktiv
+2026-07-24 13:41:15,240 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 13:41:15,241 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 13:41:15,242 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:41:15,242 INFO room_monitor_server Raum besetzt
+2026-07-24 13:41:15,243 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:41:15,243 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-24 13:41:15,244 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 209, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 13:41:15,246 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:41:15,246 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 13:41:15,246 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 13:41:15,248 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 13:41:15,248 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 13:41:15,249 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 14:07:33,118 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 14:07:33,446 INFO room_monitor_server Kein Termin
+2026-07-24 14:07:33,448 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 190, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:07:33,452 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 189, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:07:33,454 INFO room_monitor_server Termin aktiv
+2026-07-24 14:07:33,455 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 14:07:33,457 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 14:07:33,459 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:07:33,460 INFO room_monitor_server Raum besetzt
+2026-07-24 14:07:33,461 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:07:33,462 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-24 14:07:33,462 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 209, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:07:33,464 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:07:33,464 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 14:07:33,464 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 14:07:33,465 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:07:33,465 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 14:07:33,466 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 14:08:16,206 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 14:08:16,329 INFO room_monitor_server Kein Termin
+2026-07-24 14:08:16,332 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 190, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:08:16,336 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 189, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:08:16,338 INFO room_monitor_server Termin aktiv
+2026-07-24 14:08:16,340 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 14:08:16,341 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 14:08:16,344 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:08:16,344 INFO room_monitor_server Raum besetzt
+2026-07-24 14:08:16,346 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:08:16,346 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-24 14:08:16,347 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api&flask\room_monitor_server.py", line 209, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:08:16,351 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:08:16,352 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 14:08:16,352 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 14:08:16,354 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:08:16,354 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 14:08:16,355 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 14:37:28,040 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-24 14:37:28,253 INFO room_monitor_server Kein Termin
+2026-07-24 14:37:28,255 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 190, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:37:28,259 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 189, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:37:28,261 INFO room_monitor_server Termin aktiv
+2026-07-24 14:37:28,262 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-24 14:37:28,263 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-24 14:37:28,266 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:37:28,266 INFO room_monitor_server Raum besetzt
+2026-07-24 14:37:28,268 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:37:28,268 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-24 14:37:28,269 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 209, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-24 14:37:28,271 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:37:28,271 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 14:37:28,272 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-24 14:37:28,273 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-24 14:37:28,274 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-24 14:37:28,274 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:28:29,136 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-27 13:28:29,426 INFO room_monitor_server Kein Termin
+2026-07-27 13:28:29,427 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 225, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:28:29,430 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 224, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:28:29,431 INFO room_monitor_server Termin aktiv
+2026-07-27 13:28:29,432 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-27 13:28:29,433 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-27 13:28:29,435 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:28:29,510 INFO room_monitor_server Raum besetzt
+2026-07-27 13:28:29,511 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:28:29,512 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-27 13:28:29,512 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 244, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:28:29,514 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:28:29,514 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:28:29,514 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:28:29,515 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:28:29,516 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:28:29,516 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:28:47,347 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-27 13:29:06,951 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-27 13:29:07,025 INFO room_monitor_server Kein Termin
+2026-07-27 13:29:07,026 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 225, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:29:07,029 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 224, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:29:07,031 INFO room_monitor_server Termin aktiv
+2026-07-27 13:29:07,033 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-27 13:29:07,034 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-27 13:29:07,037 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:29:07,084 INFO room_monitor_server Raum besetzt
+2026-07-27 13:29:07,086 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:29:07,087 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-27 13:29:07,088 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 244, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:29:07,090 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:29:07,091 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:29:07,091 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:29:07,093 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:29:07,093 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:29:07,094 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:31:52,422 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-27 13:31:52,499 INFO room_monitor_server Kein Termin
+2026-07-27 13:31:52,502 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 225, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:31:52,505 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 224, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:31:52,507 INFO room_monitor_server Termin aktiv
+2026-07-27 13:31:52,508 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-27 13:31:52,510 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-27 13:31:52,512 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:31:52,571 INFO room_monitor_server Raum besetzt
+2026-07-27 13:31:52,573 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:31:52,574 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-27 13:31:52,575 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 244, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:31:52,578 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:31:52,579 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:31:52,580 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:31:52,581 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:31:52,582 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:31:52,582 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:32:20,088 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-27 13:32:20,158 INFO room_monitor_server Kein Termin
+2026-07-27 13:32:20,159 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 233, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:32:20,160 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 232, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:32:20,161 INFO room_monitor_server Termin aktiv
+2026-07-27 13:32:20,162 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-27 13:32:20,163 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-27 13:32:20,164 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:32:20,203 INFO room_monitor_server Raum besetzt
+2026-07-27 13:32:20,204 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:32:20,204 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-27 13:32:20,205 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 252, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:32:20,206 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:32:20,207 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:32:20,207 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:32:20,207 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:32:20,208 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:32:20,208 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:37:08,329 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-27 13:37:08,403 INFO room_monitor_server Kein Termin
+2026-07-27 13:37:08,404 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 233, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:37:08,407 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 232, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:37:08,408 INFO room_monitor_server Termin aktiv
+2026-07-27 13:37:08,409 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-27 13:37:08,410 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-27 13:37:08,411 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:37:08,454 INFO room_monitor_server Raum besetzt
+2026-07-27 13:37:08,455 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:37:08,455 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-27 13:37:08,456 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 252, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:37:08,457 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:37:08,457 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:37:08,458 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:37:08,459 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:37:08,459 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:37:08,459 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:57:12,024 WARNING room_monitor_server Konfigurationsprüfung fehlgeschlagen: Google credentials file not found, Google token file not found
+2026-07-27 13:57:12,365 INFO room_monitor_server Kein Termin
+2026-07-27 13:57:12,366 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 233, in status
+    event, _ = get_current_event(calendar_service)
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:57:12,368 ERROR room_monitor_server Status-Abfrage fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 232, in status
+    calendar_service, _ = get_services()
+                          ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:57:12,369 INFO room_monitor_server Termin aktiv
+2026-07-27 13:57:12,370 WARNING room_monitor_server Falscher oder fehlender Device-Token
+2026-07-27 13:57:12,370 WARNING room_monitor_server Upload ohne Bilddaten erhalten
+2026-07-27 13:57:12,372 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:57:12,437 INFO room_monitor_server Raum besetzt
+2026-07-27 13:57:12,438 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:57:12,439 ERROR room_monitor_server Aktiver Termin ohne Startzeit gefunden
+2026-07-27 13:57:12,440 ERROR room_monitor_server Upload-Initialisierung fehlgeschlagen
+Traceback (most recent call last):
+  File "C:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden\src\api_flask\room_monitor_server.py", line 252, in upload
+    calendar_service, gmail_service = get_services()
+                                      ~~~~~~~~~~~~^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+RuntimeError: boom
+2026-07-27 13:57:12,442 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:57:12,442 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:57:12,442 INFO room_monitor_server Mail gesendet an guest@example.com
+2026-07-27 13:57:12,443 INFO room_monitor_server Bild empfangen, starte Analyse
+2026-07-27 13:57:12,443 INFO room_monitor_server Raum leer und Termin läuft seit mindestens 10 Minuten -> Mail senden
+2026-07-27 13:57:12,443 INFO room_monitor_server Mail gesendet an guest@example.com
