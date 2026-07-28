@@ -245,10 +245,21 @@ def status():
     return Response("false", mimetype="text/plain")
 
 
+MAX_UPLOAD_BYTES = 10 * 1024 * 1024
+
+
 @app.route("/upload", methods=["POST"])
 def upload():
     if not token_ok():
         return Response("unauthorized", status=401)
+
+    if request.content_length is not None and request.content_length > MAX_UPLOAD_BYTES:
+        logger.warning("Upload überschreitet die maximale Größe (%s Bytes)", request.content_length)
+        return Response("Bild zu groß", status=413)
+
+    if request.content_type and not request.content_type.startswith("image/"):
+        logger.warning("Upload mit unerwartetem Content-Type erhalten: %s", request.content_type)
+        return Response("Ungültiger Content-Type", status=415)
 
     try:
         calendar_service, gmail_service = get_services()

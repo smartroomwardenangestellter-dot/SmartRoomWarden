@@ -261,6 +261,27 @@ class RoomMonitorServerTests(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.data.decode(), "Kein Bild")
 
+    def test_upload_rejects_oversized_payload(self):
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"x" * (self.module.MAX_UPLOAD_BYTES + 1),
+        )
+
+        self.assertEqual(response.status_code, 413)
+        self.assertEqual(response.data.decode(), "Bild zu groß")
+
+    def test_upload_rejects_non_image_content_type(self):
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"fake-image-bytes",
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 415)
+        self.assertEqual(response.data.decode(), "Ungültiger Content-Type")
+
 
 if __name__ == "__main__":
     unittest.main()
