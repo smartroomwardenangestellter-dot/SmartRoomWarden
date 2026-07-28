@@ -3,6 +3,7 @@
 import os
 import sys
 import base64
+import hmac
 
 from flask import Flask, request, Response, jsonify
 from email.mime.text import MIMEText
@@ -156,10 +157,11 @@ def send_email(gmail_service, to_email, subject, body):
 def token_ok():
     token = request.headers.get("X-Device-Token", "")
 
-    if token != DEVICE_TOKEN:
+    if not DEVICE_TOKEN or not hmac.compare_digest(token, DEVICE_TOKEN):
         logger.warning("Falscher oder fehlender Device-Token")
+        return False
 
-    return token == DEVICE_TOKEN
+    return True
 
 
 def get_cached_model():
