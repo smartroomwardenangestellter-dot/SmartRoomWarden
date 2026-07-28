@@ -302,7 +302,7 @@ def upload():
             email = attendee.get("email", "")
             if not email:
                 continue
-            if email.lower() == OWN_EMAIL.lower():
+            if OWN_EMAIL and email.lower() == OWN_EMAIL.lower():
                 continue
 
             subject = f"Raumfreigabe prüfen: {title}"
