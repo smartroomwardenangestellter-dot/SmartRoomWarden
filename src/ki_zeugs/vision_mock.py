@@ -1,5 +1,13 @@
 import os
+import sys
 from typing import Any
+
+BASE_DIR = os.path.dirname(__file__)
+SRC_DIR = os.path.dirname(BASE_DIR)
+if SRC_DIR not in sys.path:
+    sys.path.insert(0, SRC_DIR)
+
+from logger import get_logger
 
 try:
     import cv2
@@ -16,8 +24,9 @@ try:
 except ImportError:  # pragma: no cover - optional runtime dependency
     YOLO = None
 
-BASE_DIR = os.path.dirname(__file__)
 MODEL_PATH = os.path.join(BASE_DIR, "yolov8n.pt")
+
+logger = get_logger(__name__)
 
 
 def get_model() -> Any:
@@ -28,21 +37,21 @@ def get_model() -> Any:
 
 def check_raum_status(image_bytes: bytes, model: Any | None = None) -> bool:
     if np is None or cv2 is None:
-        print("[OKI] FEHLER: Bildverarbeitung ist nicht verfügbar")
+        logger.error("[OKI] FEHLER: Bildverarbeitung ist nicht verfügbar")
         return False
 
     image_array = np.frombuffer(image_bytes, dtype=np.uint8)
     img = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
 
     if img is None:
-        print("[OKI] FEHLER: Bild konnte nicht dekodiert werden!")
+        logger.error("[OKI] FEHLER: Bild konnte nicht dekodiert werden!")
         return False
 
     try:
         model_to_use = model or get_model()
         results = model_to_use(img, verbose=False)
     except Exception as exc:
-        print(f"[OKI] FEHLER: Modell-Analyse fehlgeschlagen: {exc}")
+        logger.error(f"[OKI] FEHLER: Modell-Analyse fehlgeschlagen: {exc}")
         return False
 
     people_count = 0
@@ -55,16 +64,20 @@ def check_raum_status(image_bytes: bytes, model: Any | None = None) -> bool:
     cv2.destroyAllWindows()
 
     if people_count > 0:
-        print(f"[OKI] Ergebnis: {people_count} Person(en) gefunden!")
+        logger.info(f"[OKI] Ergebnis: {people_count} Person(en) gefunden!")
         return True
 
-    print("[OKI] Ergebnis: Keine Personen gefunden!")
+    logger.info("[OKI] Ergebnis: Keine Personen gefunden!")
     return False
 
 
 if __name__ == "__main__":
 
     import argparse
+
+    from logger import setup_logging
+
+    setup_logging()
 
     parser = argparse.ArgumentParser(description="Teste die Bildanalyse mit einer Bilddatei oder dem Standardbild.")
     parser.add_argument("image", nargs="?", help="Pfad zur Testbilddatei")
@@ -76,13 +89,13 @@ if __name__ == "__main__":
     else:
         sample_path = os.path.join(BASE_DIR, "room.jpg")
         if not os.path.exists(sample_path):
-            print("[OKI] FEHLER: Kein Testbild gefunden und kein Pfad angegeben.")
+            logger.error("[OKI] FEHLER: Kein Testbild gefunden und kein Pfad angegeben.")
             raise SystemExit(1)
         with open(sample_path, "rb") as f:
             image_bytes = f.read()
 
-    print("Starte KI-Testlauf...")
+    logger.info("Starte KI-Testlauf...")
 
     result = check_raum_status(image_bytes)
 
-    print("Raum besetzt:", result)
+    logger.info(f"Raum besetzt: {result}")
