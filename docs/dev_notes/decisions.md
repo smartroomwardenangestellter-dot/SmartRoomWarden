@@ -37,3 +37,8 @@
 - die Dev-Notes werden als stabile Projekt-Dokumentation gepflegt
 - ein Runbook-Prototyp in `docs/dev_notes/operations.md` dokumentiert erste Betriebs-Checks, Fehlerfälle und Recovery-Schritte
 - Teammitglieder sollen damit den aktuellen Betriebszustand ohne Code-Risiko nachvollziehen können
+
+### 7. Secrets-Fix und akzeptiertes TLS-Risiko (2026-07-30)
+- Prinzip "Keine Secrets im Quellcode" war in `esp32_cam.ino` (WLAN-SSID/Passwort, Device-Token) und `src/config.py` (Hardcoded-Fallbacks für `DEVICE_TOKEN`/`OWN_EMAIL`) verletzt - behoben: ESP32-Secrets liegen jetzt in gitignored `esp32/secrets.h`, `config.py` hat keine Fallbacks mehr
+- `client.setInsecure()` in der ESP32-Firmware bleibt bewusst bestehen statt Cert-Pinning einzuführen: der Pi-Server nutzt Flasks `ssl_context="adhoc"` und erzeugt bei jedem Neustart ein neues Self-signed-Zertifikat, wodurch es kein stabiles Zertifikat zum Pinnen gibt. Akzeptiertes Risiko für das LAN-only-Deployment (WPA2-geschütztes Netz); echtes Pinning würde zuerst einen Umbau des Servers auf ein persistentes Zertifikat erfordern
+- Weil das Repo öffentlich ist, gelten das alte WLAN-Passwort und der alte Device-Token als kompromittiert (stehen in Commit `4d4a6f1` in der History) - Rotation ist eine offene manuelle Aufgabe, siehe `current_state.md`

@@ -1,5 +1,14 @@
 # Test Runs
 
+## 2026-07-30: Regressionscheck nach Secrets-Fix
+
+- Testdatei: gesamte Suite (`test_config.py`, `test_room_monitor_server.py`, `test_vision_mock.py`)
+- Ausführung: `python3 -m unittest discover -s tests`
+- Baseline (vor der Änderung, per `git stash`): 4 Failures, 1 Error
+- Nach Entfernen der Hardcoded-Fallbacks in `config.py`: zunächst 12 Failures, 1 Error - Ursache: `test_room_monitor_server.py` cachte `DEVICE_TOKEN`/`OWN_EMAIL` beim Modul-Import und verließ sich implizit auf den alten Hardcoded-Default
+- Fix: `test_room_monitor_server.py` setzt jetzt vor dem Modul-Import explizit `SMARTROOMWARDEN_DEVICE_TOKEN`/`SMARTROOMWARDEN_OWN_EMAIL` (`os.environ.setdefault(...)`)
+- Ergebnis danach: wieder 4 Failures, 1 Error - identisch zur Baseline, keine Regression durch den Secrets-Fix. Die verbleibenden 4+1 sind vorbestehende, unabhängige Bugs (`test_vision_mock`, `test_config.test_dotenv_values_are_loaded`, zwei `test_upload_*`-Fälle) - nicht Teil dieser Änderung
+
 ## 2026-07-27: Server-Härtung und Health-Check
 
 - Testdatei: `tests/test_room_monitor_server.py`

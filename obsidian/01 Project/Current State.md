@@ -13,6 +13,6 @@
 
 ## Offene Aufgaben
 - Konfiguration über Umgebungsvariablen zentralisieren
-- Secrets aus dem Code entfernen
+- ~~Secrets aus dem Code entfernen~~ ✅ 2026-07-30 - siehe `docs/dev_notes/decisions.md` #7 und `docs/dev_notes/current_state.md`
 - Upload-Pipeline auf RAM-basiertes Arbeiten umstellen
 - Tests und Dokumentation weiter ausbauen

@@ -70,8 +70,7 @@
 - `room.jpg` und Modellpfad in `vision_mock.py`
 
 ### Geheimnisse im Code
-- `DEVICE_TOKEN = "***REMOVED-DEVICE-TOKEN***"`
-- `OWN_EMAIL = "removed-email@example.invalid"`
+- **Behoben 2026-07-30** (Rest dieses Dokuments ist älter als der aktuelle Quellcode-Stand, siehe `docs/dev_notes/current_state.md` für den aktuellen Stand): `DEVICE_TOKEN`/`OWN_EMAIL`-Hardcoded-Fallbacks aus `src/config.py` entfernt, WLAN-Credentials/Device-Token aus `esp32_cam.ino` in gitignored `esp32/secrets.h` ausgelagert. Details in `docs/dev_notes/decisions.md` #7.
 - `credentials.json` und `token.json` werden im Projekt gespeichert
 
 ### Doppelte / unsaubere Logik
