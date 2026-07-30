@@ -72,8 +72,8 @@ GOOGLE_TOKEN_PATH = _resolve_path(
     os.getenv("GOOGLE_TOKEN_PATH"),
     PROJECT_ROOT / "token.json",
 )
-DEVICE_TOKEN = os.getenv("SMARTROOMWARDEN_DEVICE_TOKEN") or os.getenv("DEVICE_TOKEN") or "***REMOVED-DEVICE-TOKEN***"
-OWN_EMAIL = os.getenv("SMARTROOMWARDEN_OWN_EMAIL") or os.getenv("OWN_EMAIL") or "removed-email@example.invalid"
+DEVICE_TOKEN = os.getenv("SMARTROOMWARDEN_DEVICE_TOKEN") or os.getenv("DEVICE_TOKEN")
+OWN_EMAIL = os.getenv("SMARTROOMWARDEN_OWN_EMAIL") or os.getenv("OWN_EMAIL")
 
 VISION_BILD = KI_DIR / "room.jpg"
 MODEL_PATH = KI_DIR / "yolov8n.pt"

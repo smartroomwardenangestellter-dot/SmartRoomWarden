@@ -1,4 +1,5 @@
 import importlib.util
+import os
 import sys
 import unittest
 from datetime import datetime, timedelta, timezone
@@ -19,6 +20,11 @@ def load_room_monitor_module() -> Any:
     spec.loader.exec_module(module)
     return module
 
+
+# config.py no longer defaults DEVICE_TOKEN/OWN_EMAIL to known hardcoded values, so tests
+# must supply their own deterministic values regardless of the developer's shell environment.
+os.environ.setdefault("SMARTROOMWARDEN_DEVICE_TOKEN", "test-token")
+os.environ.setdefault("SMARTROOMWARDEN_OWN_EMAIL", "owner@example.com")
 
 room_monitor_server = load_room_monitor_module()
 

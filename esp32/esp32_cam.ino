@@ -2,13 +2,7 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <WiFiClientSecure.h>
-
-// =========================
-// WLAN
-// =========================
-
-const char* WIFI_SSID = "***REMOVED-WIFI-SSID***";
-const char* WIFI_PASSWORD = "***REMOVED-WIFI-PASSWORD***";
+#include "secrets.h" // defines WIFI_SSID, WIFI_PASSWORD, DEVICE_TOKEN - copy secrets.h.example, never commit secrets.h
 
 // =========================
 // PI SERVER
@@ -18,9 +12,6 @@ const char* PI_BASE_URL = "https://192.168.188.91:5000";
 
 const char* STATUS_ENDPOINT = "/status";
 const char* UPLOAD_ENDPOINT = "/upload";
-
-// TOKEN
-const char* DEVICE_TOKEN = "***REMOVED-DEVICE-TOKEN***";
 
 // Deep Sleep 5 Minuten
 const uint64_t SLEEP_US = 5ULL * 60ULL * 1000000ULL;
@@ -143,7 +134,12 @@ bool initCamera() {
 bool checkStatus() {
 
   WiFiClientSecure client; // Hier "Secure" nutzen!
-  client.setInsecure(); // GANZ WICHTIG! Sagt dem ESP, dass er das selbstgemachte Zertifikat vom Pi akzeptieren soll.
+  // Accepted risk (not a bug): the Pi runs Flask with ssl_context="adhoc", which regenerates
+  // a self-signed cert on every server restart, so there is no stable cert/public key to pin.
+  // setInsecure() skips verification. Threat model: LAN-only, WPA2-protected network - accepted
+  // for now. Real fix would require the Pi to serve a persistent, generated-once certificate
+  // whose fingerprint this firmware can pin against.
+  client.setInsecure();
   HTTPClient http;
 
   String url = String(PI_BASE_URL) + STATUS_ENDPOINT;
@@ -181,7 +177,9 @@ bool uploadImage(camera_fb_t* fb) {
 
   HTTPClient http;
   WiFiClientSecure client; // Hier "Secure" nutzen!
-  client.setInsecure(); // GANZ WICHTIG! Sagt dem ESP, dass er das selbstgemachte Zertifikat vom Pi akzeptieren soll
+  // Accepted risk (not a bug): see checkStatus() above for the full rationale - the Pi's
+  // adhoc-generated cert has no stable fingerprint to pin, so this is LAN-only trust.
+  client.setInsecure();
   String url = String(PI_BASE_URL) + UPLOAD_ENDPOINT;
 
   http.begin(url);

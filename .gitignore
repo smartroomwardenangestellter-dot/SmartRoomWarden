@@ -31,3 +31,4 @@ logs/
 tests/test_run_output.txt
 credentials/*
 !credentials/.gitkeep
+esp32/secrets.h
