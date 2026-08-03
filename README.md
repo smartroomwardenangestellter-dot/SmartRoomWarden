@@ -68,6 +68,7 @@ python -m pip install -r requirements.txt
 ```powershell
 python -m unittest discover -s tests -p 'test_*.py'
 ```
+Alternativ: `scripts/run_tests.sh` (Unix) bzw. `scripts/run_tests.ps1` (Windows) - nutzen automatisch `.venv`, falls vorhanden. GitHub Actions führt dieselbe Suite außerdem bei jedem Push/PR auf `main` aus (`.github/workflows/tests.yml`). Optional lokal: `pre-commit run --all-files` (`.pre-commit-config.yaml`).
 
 ### 6. Server starten
 ```powershell
@@ -86,8 +87,7 @@ Er antwortet mit `{"status": "ok"}`, sobald die grundlegende Konfiguration verf�
 - `src/ki_zeugs/vision_mock.py` – Bildanalyse und Erkennung
 - `src/config.py` und `src/logger.py` – Konfiguration und Logging
 - `tests/test_room_monitor_server.py` – zentrale API-Tests
-- `docs/dev_notes/` – Projektdokumentation und Entwicklerwissen
-- `obsidian/` – aktiver Vault für Projektwissen, Entscheidungen und Arbeitslog
+- `docs/dev_notes/` – gesamte Projektdokumentation, Architektur, Entscheidungen und Entwicklerwissen (alleinige Quelle seit 2026-08-03, siehe `docs/dev_notes/decisions.md` #8)
 
 ## GitHub-Workflow für Teammitglieder
 
@@ -129,10 +129,9 @@ git push -u origin feature/meine-aenderung
 ## Wissensbasis
 - `docs/dev_notes/README.md` – zentrale Entwickler- und Projekt-Dokumentation
 - `docs/github_guide_for_team.md` – GitHub-Anleitung für neue Teammitglieder
-- `obsidian/README.md` – aktiver Vault für Projektwissen, Entscheidungen und Arbeitslog
 
 ## Empfehlung für neue Teammitglieder
-- Lies zuerst die Projekt-Dokumentation und den Vault
+- Lies zuerst die Projekt-Dokumentation unter `docs/`
 - Nutze die Tests als erste Sicherheitsstufe
 - Frag bei Unsicherheit direkt nach, bevor du große Änderungen machst
 - Halte Änderungen klein und nachvollziehbar

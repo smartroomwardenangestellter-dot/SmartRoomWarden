@@ -1,5 +1,16 @@
 # Test Runs
 
+## 2026-08-03: Security-/CI-Nachzügler aus PR #7 gemergt
+
+- 4 neue Tests in `tests/test_room_monitor_server.py` (Herkunft: Cherry-Pick aus dem nie gemergten `claude/onboarding`-Branch, siehe `decisions.md` #9):
+  - `test_status_unauthorized_with_wrong_token`
+  - `test_status_unauthorized_when_device_token_not_configured`
+  - `test_upload_rejects_oversized_payload`
+  - `test_upload_rejects_non_image_content_type`
+- Gesamtzahl Tests jetzt **24** (`test_room_monitor_server.py`: 19, `test_config.py`: 3, `test_vision_mock.py`: 2 - per `grep -rc "    def test_" tests/*.py` gezählt)
+- **Nicht live ausgeführt in der Konsolidierungs-Sandbox** (kein `flask`, kein `cv2`, kein `pip` verfügbar) - stattdessen die 4 neuen Testfälle manuell gegen die Implementierung geprüft (Assertions passen zur `token_ok()`/`MAX_UPLOAD_BYTES`/Content-Type-Logik). Live-Verifikation mit echtem `flask`/`cv2` steht noch aus (offener Punkt aus PR #7s eigenem Test-Plan)
+- Ab diesem Merge läuft die Suite zusätzlich automatisch bei jedem Push/PR auf `main` über GitHub Actions (`.github/workflows/tests.yml`)
+
 ## 2026-07-30: Regressionscheck nach Secrets-Fix
 
 - Testdatei: gesamte Suite (`test_config.py`, `test_room_monitor_server.py`, `test_vision_mock.py`)

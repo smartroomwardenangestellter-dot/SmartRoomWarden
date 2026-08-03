@@ -1,16 +1,16 @@
 # Architektur & aktueller Systemstand
 
-Stand: 2026-08-03 (gegen `src/` verifiziert, vorheriger Stand war seit 2026-07-30 inkonsistent mit dem Code).
+Stand: 2026-08-03 (gegen `src/` verifiziert, inkl. der über PR #7 gemergten Security-/CI-Fixes).
 
 ## Komponenten
 
 ### `src/api_flask/room_monitor_server.py`
 - Haupt-API-Server mit Flask
-- Authentifizierung per Header-Token (`X-Device-Token`)
+- Authentifizierung per Header-Token (`X-Device-Token`), Vergleich über `hmac.compare_digest` (timing-sicher) statt `==`; `token_ok()` gibt `False` zurück, wenn `DEVICE_TOKEN` nicht konfiguriert ist (fail-closed) - siehe `decisions.md` #9
 - Google-Integration für Kalender (`calendar.events().list`) und Gmail (`messages().send`)
 - Endpunkte:
   - `/status` prüft, ob ein aktueller Termin aktiv ist
-  - `/upload` nimmt ein Bild entgegen, analysiert es und sendet ggf. Mails
+  - `/upload` nimmt ein Bild entgegen, analysiert es und sendet ggf. Mails - validiert vor der Verarbeitung `Content-Length` (max. 10 MB, sonst `413`) und `Content-Type` (muss `image/*` sein, sonst `415`)
   - `/health` einfacher Betriebscheck
 - Genau eine `token_ok()`-Funktion (Zeile 156)
 - Konfiguration und Secrets werden vollständig über `src/config.py` geladen, keine Hardcoded-Fallbacks (siehe `decisions.md` #7)
@@ -48,8 +48,13 @@ Stand: 2026-08-03 (gegen `src/` verifiziert, vorheriger Stand war seit 2026-07-3
   - Festlegung von Modell- und Bildpfaden
 
 ### Utilities / Infrastruktur
-- `src/logger.py`: zentrales Logging mit RotatingFileHandler (siehe `decisions.md` #4)
+- `src/logger.py`: zentrales Logging mit RotatingFileHandler (siehe `decisions.md` #4); seit 2026-08-03 auch von `vision_mock.py` genutzt (vorher `print()`, siehe `decisions.md` #9)
 - Startup- und Konfigurationsprüfung vor dem eigentlichen Request-Handling
+
+## CI und Entwicklungs-Tooling (seit 2026-08-03)
+- GitHub Actions (`.github/workflows/tests.yml`): führt bei jedem Push/PR auf `main` `python -m unittest discover -s tests -p 'test_*.py'` aus (inkl. OpenCV-Systemabhängigkeiten)
+- `scripts/run_tests.sh` / `scripts/run_tests.ps1`: lokaler Testrunner-Wrapper, nutzt `.venv` falls vorhanden, sonst System-Python
+- `.pre-commit-config.yaml`: `trailing-whitespace`, `end-of-file-fixer`, `check-yaml`, `check-added-large-files`
 
 ## Datenfluss aktuell
 1. Request an `/upload` erhält binäre Bilddaten (`request.get_data()`)
@@ -73,4 +78,4 @@ Aus dem ehemaligen `obsidian/`-Glossar übernommen, hier ist der einzige Ort daf
 - Keine klare Trennung zwischen API-Logik und einer eigenen Service-/Utility-Schicht
 - `docs/architektur.md` (diese Datei) beschreibt aktuell keine Refactoring-Vorschläge mehr, die bereits erledigt sind - siehe `roadmap.md` für offene Punkte
 
-Bereits erledigt und daher hier nicht mehr als Schuld gelistet (verifiziert gegen den Code): Secrets im Code (behoben 2026-07-30, siehe `decisions.md` #7), doppelte `token_ok()`-Definition (nur noch eine), Bildverarbeitung über temporäre Datei (jetzt in-memory), fehlendes Logging (jetzt zentral über `logger.py`).
+Bereits erledigt und daher hier nicht mehr als Schuld gelistet (verifiziert gegen den Code): Secrets im Code (behoben 2026-07-30, siehe `decisions.md` #7), doppelte `token_ok()`-Definition (nur noch eine), Bildverarbeitung über temporäre Datei (jetzt in-memory), fehlendes Logging (jetzt zentral über `logger.py`, inkl. `vision_mock.py`), Timing-Angriffsfläche beim Token-Vergleich (jetzt `hmac.compare_digest`), fehlende Upload-Validierung (jetzt Größen-/Content-Type-Check), fehlende CI (jetzt GitHub Actions).

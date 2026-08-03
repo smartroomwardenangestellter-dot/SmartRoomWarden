@@ -5,7 +5,9 @@
 - Keine Secrets im Quellcode
 - In-Memory-Bildverarbeitung statt temporäre Dateiablage
 - Unit-Tests und Mocking für externe Dienste (Google Calendar/Gmail)
-- Zentrales Logging statt `print()`
+- Zentrales Logging statt `print()` (ausnahmslos, siehe #9)
+- Sicherheitskritische Vergleiche (Tokens) laufen timing-sicher, nicht über `==`
+- CI führt die Test-Suite bei jedem Push/PR automatisch aus
 
 ## Getroffene Entscheidungen
 
@@ -47,3 +49,13 @@
 - Zwei parallele interne Doku-Systeme (`docs/dev_notes/` und ein eingebetteter Obsidian-Vault unter `obsidian/`) wurden zusammengeführt - Auslöser war eine bereits dokumentierte Divergenz (siehe die frühere ADR zu "One-Brain vs. Fragmented Docs" im persönlichen Vault des Projektinhabers), verschärft durch echte Redundanz: von ~40 Dateien in `obsidian/` waren nur 2 noch aktuell gepflegt, der Rest reine Duplikate, generisches Vault-Boilerplate oder tote Stubs/Templates
 - `docs/` ist ab sofort die einzige technische Dokumentation im Repo. Der eingebettete Vault (`obsidian/`) wurde komplett entfernt, ebenso `docs/dev_notes/internal/` und `system_prompt.md` (reine KI-Arbeitsanweisungen, keine Produkt-Doku) sowie `docs/Sprintplan.md`/`docs/TODOs.md` (vollständig erledigter historischer Sprintplan, siehe `roadmap.md` für die noch offenen Punkte)
 - Prozesswissen, das nicht in technische Doku gehört (Lessons Learned, Arbeits-Session-Logs, Agent-Arbeitsweise-Notizen), lebt jetzt im persönlichen Second-Brain-Vault des Projektinhabers, außerhalb dieses Repos - nicht mehr in einer zweiten, parallelen In-Repo-Wissensbasis
+
+### 9. Security-/CI-Nachzügler aus einem nie gemergten Parallel-Branch (PR #7, 2026-08-03)
+- Ein vor dem Secrets-Fix (siehe Entscheidung #7) abgezweigter, nie gemergter Branch (`claude/onboarding`) hatte unabhängig eine gründlichere Runde gemacht als der Stand, der auf `main` landete. Die Code-Fixes wurden nachträglich per Cherry-Pick auf `main` gebracht, die dortigen (mit unserer Konsolidierung #8 kollidierenden) Doku-Änderungen bewusst nicht:
+  - `token_ok()` vergleicht jetzt über `hmac.compare_digest` (timing-sicher) statt `==`, und gibt `False` zurück, wenn `DEVICE_TOKEN` nicht gesetzt ist (vorher unklar/implizit)
+  - `/upload` validiert vor der Verarbeitung `Content-Length` (max. 10 MB, sonst `413`) und `Content-Type` (muss `image/*` sein, sonst `415`)
+  - `vision_mock.py` nutzt jetzt durchgängig `src/logger.py` statt `print()` - schließt die einzige verbliebene Ausnahme vom Logging-Prinzip oben
+  - Ein realer Absturz-Bug behoben: die Attendee-Mail-Schleife rief `OWN_EMAIL.lower()` unconditional auf, was bei nicht gesetztem `OWN_EMAIL` mit `AttributeError` abstürzte
+  - GitHub Actions (`.github/workflows/tests.yml`) führt die Test-Suite jetzt bei jedem Push/PR auf `main` automatisch aus - vorher gab es keine CI
+  - `requirements.txt` war UTF-16-kodiert, jetzt UTF-8
+- Diese Änderungen betrafen nur Code/Tests/CI, keine Produkt-Doku-Anpassung im selben PR - deshalb wurden `architektur.md` (Komponentenbeschreibung, CI-Abschnitt), `test_runs.md` und diese Datei nachträglich in einem separaten Doku-Catch-up aktualisiert
