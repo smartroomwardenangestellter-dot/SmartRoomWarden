@@ -11,6 +11,9 @@
 - Dev Notes: `docs/dev_notes/`
 - Betriebs-Runbook: `docs/dev_notes/operations.md`
 - Beispiel-Konfigurationen: `config_templates/`
+- Test-Runner-Skripte: `scripts/run_tests.sh` (Unix), `scripts/run_tests.ps1` (Windows)
+- Pre-commit-Hooks: `.pre-commit-config.yaml`
+- CI-Workflow: `.github/workflows/tests.yml`
 
 ## Wichtige Umgebungsvariablen
 - `SMARTROOMWARDEN_DEVICE_TOKEN`
@@ -22,10 +25,11 @@
 - `SMARTROOMWARDEN_SSL`
 
 ## Nützliche Kommandos
-- Tests ausführen: `python -m unittest discover -s tests -p 'test_*.py'`
+- Tests ausführen: `python -m unittest discover -s tests -p 'test_*.py'` (oder `scripts/run_tests.sh` / `scripts/run_tests.ps1`, nutzen `.venv` falls vorhanden)
 - Server starten: `python src/api_flask/room_monitor_server.py`
 - Health-Check: `curl http://127.0.0.1:5000/health`
 - Requirements installieren: `python -m pip install -r requirements.txt`
+- Pre-commit-Hooks lokal ausführen: `pre-commit run --all-files`
 
 ## Checkpoints
 - Aktueller Teststatus: `docs/dev_notes/test_runs.md`

@@ -28,7 +28,8 @@
 
 ### Tests
 - `tests/test_room_monitor_server.py` deckt API-Aufrufe und Fehlerszenarien ab
-- Die aktuelle Regressionstest-Suite läuft erfolgreich mit 19 Tests
+- Die aktuelle Regressionstest-Suite umfasst 24 Tests (Stand 2026-08-03, siehe `test_runs.md`)
+- GitHub Actions führt die Suite seit 2026-08-03 automatisch bei jedem Push/PR auf `main` aus (`.github/workflows/tests.yml`)
 
 ### Aktuelle Verbesserungen
 - Health-Endpoint für einfache Systemprüfungen ergänzt
@@ -44,6 +45,11 @@
 - `src/config.py`: `DEVICE_TOKEN`/`OWN_EMAIL` haben keinen Hardcoded-Fallback mehr - fehlt die Env-Var, schlägt `validate_configuration()`/`get_services()` laut fehl statt den bekannten Token stillschweigend zu nutzen
 - `client.setInsecure()` in `esp32_cam.ino` bleibt bestehen, ist jetzt aber im Code als bewusst akzeptiertes Risiko dokumentiert: der Pi startet Flask mit `ssl_context="adhoc"`, das bei jedem Neustart ein neues Self-signed-Zertifikat erzeugt - Cert-Pinning ist damit ohne Server-Umbau auf ein persistentes Zertifikat nicht sinnvoll möglich
 - **Offen (nicht code-seitig lösbar):** Das Repo ist öffentlich auf GitHub - das reale WLAN-Passwort und der alte Device-Token stehen weiterhin in der Git-History (Commit `4d4a6f1`). WLAN-Passwort-Rotation am Router, Device-Token-Rotation + Re-Flash des ESP32, und ggf. Git-History-Bereinigung sind offene manuelle Schritte
+
+### Sicherheit (Ergänzung 2026-08-03, siehe `decisions.md` #9)
+- `token_ok()` vergleicht den Device-Token jetzt über `hmac.compare_digest` (timing-sicher) statt `==`, und ist fail-closed (`False`), wenn `DEVICE_TOKEN` nicht konfiguriert ist
+- `/upload` validiert `Content-Length` (max. 10 MB) und `Content-Type` (`image/*`) vor der Verarbeitung
+- Realer Absturz-Bug behoben: die Attendee-Mail-Schleife rief `OWN_EMAIL.lower()` unconditional auf - crashte, wenn `OWN_EMAIL` nicht gesetzt war
 
 ### Offene Aufgaben
 - reale Google-/Mail-Integration auf dem Zielserver verifizieren
