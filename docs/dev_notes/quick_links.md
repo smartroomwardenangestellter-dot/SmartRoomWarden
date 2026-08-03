@@ -1,7 +1,7 @@
 # Quick Links
 
 ## Wichtige Pfade
-- Projekt-Root: `c:\Users\MLampe\OneDrive - COMPUTACENTER\Dokumente\GitHub\SmartRoomWarden`
+- Projekt-Root: `.` (Repo-Wurzel, lokaler Klon-Pfad ist client-spezifisch)
 - Haupt-Server: `src/api_flask/room_monitor_server.py`
 - Vision-Modul: `src/ki_zeugs/vision_mock.py`
 - Konfiguration: `src/config.py`
