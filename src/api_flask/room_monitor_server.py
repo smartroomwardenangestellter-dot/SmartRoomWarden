@@ -3,6 +3,7 @@
 import os
 import sys
 import base64
+import hmac
 
 from flask import Flask, request, Response, jsonify
 from email.mime.text import MIMEText
@@ -156,10 +157,11 @@ def send_email(gmail_service, to_email, subject, body):
 def token_ok():
     token = request.headers.get("X-Device-Token", "")
 
-    if token != DEVICE_TOKEN:
+    if not DEVICE_TOKEN or not hmac.compare_digest(token, DEVICE_TOKEN):
         logger.warning("Falscher oder fehlender Device-Token")
+        return False
 
-    return token == DEVICE_TOKEN
+    return True
 
 
 def get_cached_model():
@@ -243,10 +245,21 @@ def status():
     return Response("false", mimetype="text/plain")
 
 
+MAX_UPLOAD_BYTES = 10 * 1024 * 1024
+
+
 @app.route("/upload", methods=["POST"])
 def upload():
     if not token_ok():
         return Response("unauthorized", status=401)
+
+    if request.content_length is not None and request.content_length > MAX_UPLOAD_BYTES:
+        logger.warning("Upload überschreitet die maximale Größe (%s Bytes)", request.content_length)
+        return Response("Bild zu groß", status=413)
+
+    if request.content_type and not request.content_type.startswith("image/"):
+        logger.warning("Upload mit unerwartetem Content-Type erhalten: %s", request.content_type)
+        return Response("Ungültiger Content-Type", status=415)
 
     try:
         calendar_service, gmail_service = get_services()
@@ -289,7 +302,7 @@ def upload():
             email = attendee.get("email", "")
             if not email:
                 continue
-            if email.lower() == OWN_EMAIL.lower():
+            if OWN_EMAIL and email.lower() == OWN_EMAIL.lower():
                 continue
 
             subject = f"Raumfreigabe prüfen: {title}"

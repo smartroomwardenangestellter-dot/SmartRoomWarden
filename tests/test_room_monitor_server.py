@@ -44,6 +44,22 @@ class RoomMonitorServerTests(unittest.TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.data.decode(), "unauthorized")
 
+    def test_status_unauthorized_with_wrong_token(self):
+        response = self.client.get("/status", headers={"X-Device-Token": "wrong-token"})
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.data.decode(), "unauthorized")
+
+    def test_status_unauthorized_when_device_token_not_configured(self):
+        original_token = self.module.DEVICE_TOKEN
+        self.module.DEVICE_TOKEN = None
+        try:
+            response = self.client.get("/status", headers=self.valid_headers)
+        finally:
+            self.module.DEVICE_TOKEN = original_token
+
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.data.decode(), "unauthorized")
+
     def test_status_returns_true_when_event_active(self):
         self.module.get_services = Mock(return_value=(Mock(), Mock()))
         self.module.get_current_event = Mock(return_value=("event", datetime.now(timezone.utc)))
@@ -244,6 +260,27 @@ class RoomMonitorServerTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.data.decode(), "Kein Bild")
+
+    def test_upload_rejects_oversized_payload(self):
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"x" * (self.module.MAX_UPLOAD_BYTES + 1),
+        )
+
+        self.assertEqual(response.status_code, 413)
+        self.assertEqual(response.data.decode(), "Bild zu groß")
+
+    def test_upload_rejects_non_image_content_type(self):
+        response = self.client.post(
+            "/upload",
+            headers=self.valid_headers,
+            data=b"fake-image-bytes",
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 415)
+        self.assertEqual(response.data.decode(), "Ungültiger Content-Type")
 
 
 if __name__ == "__main__":
