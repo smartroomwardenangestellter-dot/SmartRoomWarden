@@ -29,3 +29,9 @@
 - Betriebshandbuch und Runbook für Deployment und Wartung abschließen
 - ESP- und Kamerapipeline als echte Integrationsstufe dokumentieren
 - weitere Stabilitäts- und Observability-Maßnahmen auf Release-Reife ausbauen
+
+## Ergänzende Themen (übernommen aus dem ehemaligen `docs/TODOs.md`, 2026-08-03)
+- [ ] Dashboard-Prototyp planen (optional)
+- [ ] Betriebsdokumentation und Wartungskonzept starten
+- [ ] Informationsflyer/Inhaltsplan erstellen
+- [ ] ESP-Flashing-Tool konzipieren

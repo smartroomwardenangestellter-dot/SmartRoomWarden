@@ -1,12 +1,11 @@
 # SmartRoomWarden Agent Instructions
 
 ## Purpose
-This repository is the project knowledge base and working codebase for SmartRoomWarden. The agent should support productive, safe, and traceable development.
+This repository is the working codebase and technical documentation for SmartRoomWarden. The agent should support productive, safe, and traceable development.
 
 ## Core working rules
-- Keep the Obsidian vault as the active working knowledge space.
-- Keep repository documentation in `docs/dev_notes/` as stable project documentation.
-- When important decisions, findings, or process lessons are discovered, capture them in the vault immediately.
+- Keep repository documentation in `docs/` (incl. `docs/dev_notes/`) as the single source of technical project documentation - there is no separate in-repo knowledge base.
+- When important decisions, findings, or root-cause fixes are made, record them in `docs/dev_notes/decisions.md` and `docs/dev_notes/current_state.md`.
 - Prefer small, verifiable changes over broad refactors.
 - Do not commit secrets, credentials, tokens, or local environment files.
 
@@ -15,7 +14,7 @@ This repository is the project knowledge base and working codebase for SmartRoom
 2. Make the smallest root-cause fix that matches the task.
 3. Add or update a regression test when changing behavior.
 4. Verify with the relevant test command before claiming success.
-5. Record important learnings in the vault and keep the project docs aligned.
+5. Record important decisions and current-state changes in `docs/dev_notes/`.
 
 ## Dependency rule
 - If new Python packages are introduced, update `requirements.txt` as part of the change.
@@ -29,22 +28,19 @@ This repository is the project knowledge base and working codebase for SmartRoom
 - Avoid hardcoded secrets, paths, or local-only environment assumptions in source files.
 
 ## Documentation expectations
-- Use the repository docs for stable technical context.
-- Use the vault for active project memory, decisions, working notes, and next actions.
-- When it changes the course of engineering, document the rationale in the vault.
+- Use `docs/` for all stable technical context, current status, and decision history.
+- The project owner separately maintains a personal second-brain vault outside this repository for cross-project knowledge, process learnings, and working-session logs - repo-scoped agents do not have access to it and should not assume it exists as a write target.
 
 ## Default-agent routing rules
 - Analyze the user's request first and decide whether a specialized agent is needed.
-- If the request is primarily about vault maintenance, active knowledge capture, decisions, or project memory, route it to the `obsidian-vault-agent`.
-- If the request is primarily about repository execution, safe changes, docs alignment, or minimal engineering work, route it to the `repo-ops-agent`.
+- If the request is primarily about repository execution, safe changes, or docs alignment, route it to the `repo-ops-agent`.
 - If the request is primarily about validation, reproduction, failing tests, or evidence-based verification, route it to the `quality-verification-agent`.
-- If the task is general, mixed, or ambiguous, stay with the default agent and keep the work small, verifiable, and well documented in the vault.
+- If the task is general, mixed, or ambiguous, stay with the default agent and keep the work small, verifiable, and well documented in `docs/`.
 
 ## Routing decision matrix
-- Vault / memory / notes / learnings / decisions / active project context -> `obsidian-vault-agent`
 - Code change / bug fix / docs alignment / repo hygiene / small engineering task -> `repo-ops-agent`
 - Test run / reproduction / proof / diagnosis / verification -> `quality-verification-agent`
-- If two of the above are involved, pick the dominant intent and delegate that specialty first; keep the default agent in charge of the overall workflow.
+- If both are involved, pick the dominant intent and delegate that specialty first; keep the default agent in charge of the overall workflow.
 - Do not route every request to a specialized agent just because one exists. Only delegate when it improves clarity, safety, or traceability.
 
 ## Safety guardrails
@@ -52,4 +48,4 @@ This repository is the project knowledge base and working codebase for SmartRoom
 - Always verify that the repository remains testable after edits.
 - If a task turns into a larger refactor, split it into small, reviewable steps.
 - Do not add new dependencies without documenting the reason and updating `requirements.txt` if needed.
-- Always preserve the division between the active vault and stable repository docs.
+- Keep `docs/` internally consistent - verify claims against actual source before writing them down.

@@ -1,5 +1,7 @@
 # Architektur & aktueller Systemstand
 
+Stand: 2026-08-03 (gegen `src/` verifiziert, vorheriger Stand war seit 2026-07-30 inkonsistent mit dem Code).
+
 ## Komponenten
 
 ### `src/api_flask/room_monitor_server.py`
@@ -9,17 +11,15 @@
 - Endpunkte:
   - `/status` prüft, ob ein aktueller Termin aktiv ist
   - `/upload` nimmt ein Bild entgegen, analysiert es und sendet ggf. Mails
-- Derzeitige Datenflussprobleme:
-  - Bild wird in `VISION_BILD` als temporäre Datei geschrieben
-  - Pfad- und Secret-Konfiguration sind teilweise hartkodiert
-  - Es gibt zwei `token_ok()`-Funktionen, von denen nur die zweite verwendet wird
-  - `credentials.json` und `token.json` werden direkt im Projekt erwartet
+  - `/health` einfacher Betriebscheck
+- Genau eine `token_ok()`-Funktion (Zeile 156)
+- Konfiguration und Secrets werden vollständig über `src/config.py` geladen, keine Hardcoded-Fallbacks (siehe `decisions.md` #7)
 
 ### `src/ki_zeugs/vision_mock.py`
 - Bildanalyse per Ultralytics YOLO
-- Lädt das Modell aus `src/ki_zeugs/yolov8n.pt`
-- Derzeitige Eingabe: festes Bild `room.jpg` im gleichen Ordner
-- Analysiert einen Bildpfad, statt bereits geladene Bilddaten zu verarbeiten
+- Lädt das Modell aus `src/ki_zeugs/yolov8n.pt` (`get_model()`), wird von der API gecacht statt bei jedem Upload neu geladen
+- `check_raum_status(image_bytes: bytes, model=None)` verarbeitet bereits geladene Bilddaten (`cv2.imdecode`) - kein Datei-Umweg im Server-Pfad
+- Das feste Bild `room.jpg` existiert nur noch als Fallback für den manuellen CLI-Testlauf (`python vision_mock.py`, `__main__`-Block), nicht im Produktionspfad
 - Gibt `True` zurück, wenn Personen erkannt werden
 
 ## Verantwortlichkeiten
@@ -36,63 +36,41 @@
 ### Vision / Bildanalyse
 - `vision_mock.py` ist verantwortlich für:
   - Laden und Verwenden des KI-Modells
-  - Verarbeitung von Eingabebildern
+  - Verarbeitung von Eingabebildern (in-memory)
   - Erkennung von Personen im Raum
   - Rückgabe eines einfachen Ergebnisses (`raum_besetzt` / `raum_frei`)
 
 ### Konfiguration / Secrets
-- Aktuell ist die Verwaltung verantwortlich für:
+- `src/config.py` ist verantwortlich für:
+  - Laden von `.env`/`.env.<mode>` (Runtime-Mode `simulation`/`system`)
+  - Auflösen von `DEVICE_TOKEN`/`OWN_EMAIL` aus Umgebungsvariablen (kein Fallback)
   - Zugriff auf `credentials.json` und `token.json`
-  - Laden von `DEVICE_TOKEN` und `OWN_EMAIL`
   - Festlegung von Modell- und Bildpfaden
-- Diese Verantwortung sollte später in ein eigenes Modul (`config.py`) ausgelagert werden.
 
 ### Utilities / Infrastruktur
-- Dinge wie:
-  - Logging
-  - Fehlerprotokollierung
-  - Pfadmanagement
-  - modulare Service-Schichten
-  sollten in Zukunft in eigene Hilfs- oder Dienstmodule verschoben werden.
-
-## Konfiguration und Secrets
-- `DEVICE_TOKEN` ist direkt im Code hartkodiert
-- `OWN_EMAIL` ist ebenfalls fest hinterlegt
-- `credentials.json` und `token.json` werden aus dem Arbeitsverzeichnis geladen
-- `.gitignore` enthält `credentials.json` und `token.json`, aber nicht unbedingt Pfade in `src/api_flask`
-- Aktuelle Struktur unterstützt keine externe Konfigurationsdatei außerhalb des Projekts
-
-## Technische Schulden
-
-### Harte Pfade
-- `os.path.join(SRC_DIR, "ki_zeugs", "room.jpg")` in `room_monitor_server.py`
-- `BASE_DIR = os.path.dirname(__file__)` + `sys.path.insert(0, SRC_DIR)` im Server
-- `room.jpg` und Modellpfad in `vision_mock.py`
-
-### Geheimnisse im Code
-- **Behoben 2026-07-30** (Rest dieses Dokuments ist älter als der aktuelle Quellcode-Stand, siehe `docs/dev_notes/current_state.md` für den aktuellen Stand): `DEVICE_TOKEN`/`OWN_EMAIL`-Hardcoded-Fallbacks aus `src/config.py` entfernt, WLAN-Credentials/Device-Token aus `esp32_cam.ino` in gitignored `esp32/secrets.h` ausgelagert. Details in `docs/dev_notes/decisions.md` #7.
-- `credentials.json` und `token.json` werden im Projekt gespeichert
-
-### Doppelte / unsaubere Logik
-- Zwei `token_ok()`-Definitionen in `room_monitor_server.py`
-- `sys.path`-Manipulation zur Modulauflösung
-- Bildverarbeitung über Datei statt in-memory Pipeline
-
-### Fehlendes Logging & Fehlerhandling
-- Nutzung von `print()` statt `logging`
-- Fehlende zentrale Fehlerbehandlung
-- Keine klare Trennung zwischen API-Logik und Service/Utility-Schichten
+- `src/logger.py`: zentrales Logging mit RotatingFileHandler (siehe `decisions.md` #4)
+- Startup- und Konfigurationsprüfung vor dem eigentlichen Request-Handling
 
 ## Datenfluss aktuell
-1. Request an `/upload` erhält binäre Bilddaten
-2. Bild wird in `src/ki_zeugs/room.jpg` geschrieben
-3. `check_raum_status()` analysiert das gespeicherte Bild
-4. Temporäre Datei wird gelöscht
-5. Bei leerem Raum und aktivem Termin werden Mails versendet
+1. Request an `/upload` erhält binäre Bilddaten (`request.get_data()`)
+2. `check_raum_status(image_bytes, model=...)` dekodiert die Bytes direkt im RAM (`np.frombuffer` + `cv2.imdecode`) - keine temporäre Datei
+3. Bei erkannter Person: Antwort "Raum besetzt"
+4. Bei leerem Raum und aktivem Termin, der seit ≥10 Minuten läuft: Mail an die Teilnehmer (außer den eigenen)
 
-## Erste Verbesserungsansätze
-- Bilddaten im RAM verarbeiten, statt temporär zu speichern
-- Konfiguration und Secrets über Umgebungsvariablen oder externe Pfade laden
-- Zentrale Start- und Konfigurationsprüfung einführen
-- Logging anstelle von `print()` nutzen
-- Dokumentation der Komponenten und Datenflüsse erweitern
+## Begriffe
+
+Aus dem ehemaligen `obsidian/`-Glossar übernommen, hier ist der einzige Ort dafür:
+
+- **Room Status**: Zustand eines Raums, z. B. besetzt oder leer
+- **Active Calendar Event**: laufender Termin im Google Kalender
+- **Upload Pipeline**: Verarbeitung eines eingehenden Bildes über die API
+- **Ghost Meeting**: ein Termin, der als aktiv erkannt wird, obwohl kein echter Meeting-Status vorliegt (siehe Logging in `decisions.md`/`roadmap.md`)
+- **Device Token**: Authentifizierungszeichen für den Zugriff auf den Server
+
+## Bekannte technische Schulden (Stand 2026-08-03)
+
+- `credentials.json` und `token.json` werden im Projektverzeichnis erwartet, nicht extern konfigurierbar
+- Keine klare Trennung zwischen API-Logik und einer eigenen Service-/Utility-Schicht
+- `docs/architektur.md` (diese Datei) beschreibt aktuell keine Refactoring-Vorschläge mehr, die bereits erledigt sind - siehe `roadmap.md` für offene Punkte
+
+Bereits erledigt und daher hier nicht mehr als Schuld gelistet (verifiziert gegen den Code): Secrets im Code (behoben 2026-07-30, siehe `decisions.md` #7), doppelte `token_ok()`-Definition (nur noch eine), Bildverarbeitung über temporäre Datei (jetzt in-memory), fehlendes Logging (jetzt zentral über `logger.py`).

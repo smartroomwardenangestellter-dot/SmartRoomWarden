@@ -14,10 +14,9 @@ Diese Wissensbasis dient als zentrale Dokumentation für wichtige Erkenntnisse, 
 - `decisions.md`: Wichtige Architektur- und Refactoring-Entscheidungen
 - `operations.md`: Betriebs- und Runbook-Prototyp für den nächsten Server-Deploy-Schritt
 - `quick_links.md`: Relevante Pfade, Umgebungsvariablen und Kommandos
-- `internal/`: AI-interne Arbeitsdokumente und Cleanup-Notizen
 
 ## Pflege
 - Jede Änderung am Code oder an der Architektur sollte hier ergänzt werden
 - Testläufe werden unter `test_runs.md` dokumentiert
 - Wenn neue Erkenntnisse entstehen, werden sie in `current_state.md` und `decisions.md` eingetragen
-- Dieses Verzeichnis bleibt die stabile Projekt-Dokumentation; der lokale Obsidian-Vault unter `obsidian/` ist die aktive Arbeits- und Wissensbasis
+- Dieses Verzeichnis (`docs/`) ist die einzige und alleinige Projekt-Dokumentation (Stand 2026-08-03). Der frühere eingebettete Obsidian-Vault unter `obsidian/` wurde retiert - er war größtenteils veraltetes Duplikat und generisches Vault-Boilerplate; Prozesswissen und Learnings, die dort lebten, liegen jetzt im persönlichen Second-Brain-Vault des Projektinhabers (außerhalb dieses Repos), nicht mehr hier. Siehe `decisions.md` #8.
